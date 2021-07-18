@@ -4,9 +4,9 @@ developed using the MVC design pattern and the following technologies:
 
 - Java EE, Apache Maven
 - WAR. Tomcat web container. Servlets
-- Server-side technologies (HTTP)
-- Client-side technologies (HTML5, CSS3, JavaScript (base), Bootstrap) 
-- Database to store and retrieve information from (MySQL, queries, DB configuration in the IDE)
+- Server-side technologies: HTTP
+- Client-side technologies: HTML5, CSS3, JavaScript (base), Bootstrap 
+- Database to store and retrieve information from (MySQL, queries, DB configuration in IntelliJ IDEA)
 - Cookies setting and configuring
 
  Development environment: IntelliJ IDEA
