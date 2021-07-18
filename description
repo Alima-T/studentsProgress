@@ -1,0 +1,13 @@
+A WEB application for automating the accounting of student progress 
+with authorization and access rights based on roles (student, teacher, admin), 
+developed using the MVC design pattern and the following technologies:
+
+- Java EE, Apache Maven
+- WAR. Tomcat web container. Servlets
+- Database to store and retrieve information from (MySQL, queries, DB configuration in the IDE)
+- Server-side technologies (HTTP)
+- Client-side technologies (HTML5, CSS3, JavaScript (base), Bootstrap) 
+- Cookies setting and configuring
+
+ Development environment (IntelliJ IDEA))
+ 
