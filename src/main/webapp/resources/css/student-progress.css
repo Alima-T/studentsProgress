@@ -1,0 +1,80 @@
+body{
+
+    background-position: center;
+    background-size: inherit;
+
+    background-repeat: no-repeat;
+    font-family: Raleway;
+}
+.sheme_input{
+
+    display: flex;
+    flex-direction:column;
+
+}
+h1{
+    text-align: center;
+
+    margin: 50px 0 0 0;
+
+
+}
+.submin_left{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+.submin_right{
+    display: flex;
+    flex-direction: column;
+
+}
+.look{
+    margin: 30px 10px 0 0;
+}
+
+.mody{
+    margin: 10px 10px 0 0;
+}
+.exit{
+    margin-left: 10px;
+
+}
+.navbar{
+    margin-top: 5px;
+}
+.create{
+    margin: 30px  0 0;
+}
+.delite{
+    margin: 10px 10px 0 0;
+}
+table{
+    margin-top: 30px;
+}
+h3{
+    margin-top: 30px;
+}
+.semestr{
+    margin-top: 30px;
+}
+.list_emestr{
+    outline: 1px solid #0d6efd;
+}
+.choose_input{
+    margin-top: 30px;
+}
+.submin_le{
+    display: flex;
+    flex-direction: column;
+
+
+}
+form{
+    display: contents;
+
+}
+
+
+
