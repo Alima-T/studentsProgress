@@ -1,0 +1,36 @@
+html {
+    background-image: url(../images/bgPicture.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+h3,
+h5 {
+    text-align: center;
+}
+
+.btn-primary1 {
+    color: #000000;
+    background-color: rgb(220, 220, 220);
+    border-color: rgb(72, 72, 72);
+;
+}
+
+.active1 {
+    color: #000000;
+    background-color: rgb(220, 220, 220);
+    border-color: rgb(72, 72, 72);
+;
+}
+
+.input-group1 {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}

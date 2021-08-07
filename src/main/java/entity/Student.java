@@ -7,7 +7,7 @@ public class Student {
     private int id;
     private String lastname;
     private String name;
-    private Group group;
+    private String group;
     private Date date;
     private int status=1;
 
@@ -16,7 +16,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(int id, String lastname, String name, Group group, Date date) {
+    public Student(int id, String lastname, String name, String group, Date date) {
         this.id = id;
         this.lastname = lastname;
         this.name = name;
@@ -48,11 +48,11 @@ public class Student {
         this.name = name;
     }
 
-    public Group getGroup() {
+    public String getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(String group) {
         this.group = group;
     }
 

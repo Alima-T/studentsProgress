@@ -9,6 +9,8 @@
         <module name="studentsProgress" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel>
+      <module name="studentsProgress" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
