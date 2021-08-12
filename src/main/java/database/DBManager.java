@@ -26,7 +26,7 @@ public class DBManager {
                 student.setId(rs.getInt("id"));
                 student.setLastname(rs.getString("lastname"));
                 student.setName(rs.getString("name"));
-                student.setGroup(rs.getString("group"));
+                student.setId_group(rs.getInt("id_group"));
                 student.setDate(rs.getDate("date"));
                 students.add(student);
             }
@@ -48,7 +48,7 @@ public class DBManager {
                 student.setId(rs.getInt("id"));
                 student.setLastname(rs.getString("lastname"));
                 student.setName(rs.getString("name"));
-                student.setGroup(rs.getString("group"));
+                student.setId_group(rs.getInt("group"));
                 student.setDate(rs.getDate("date"));
             }
         } catch (Exception e) {
@@ -172,22 +172,30 @@ public class DBManager {
         }
     }
 
-
     public static ArrayList<Discipline> getAllActiveDisciplinesByTerm(int idTerm) {
         ArrayList<Discipline> disciplines = new ArrayList<Discipline>();
         try {
             Class.forName(Constants.MYSQL_DRIVER);
             Connection conn = DriverManager.getConnection(Constants.DB_URL);
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT discipline.id, discipline.discipline FROM term_discipline as td" + //as - маска, для того, чтобы сократить название заменяем с помощью фы
-                    "left join discipline as d on td.id_discipline = d.id\n" +// join - присоединение таблицы discipline к таблице term_discipline к колонке id_discipline
-                    "where td.id_term = '" + idTerm + "'\n" + // где id_term равно выбранному в браузере семестру
-                    "and d.status = '1'");// выводит только активные дисциплины в выбранном семестре
+//            ResultSet rs = stmt.executeQuery("SELECT * FROM students_19.term_discipline \n" +
+//                    "left join discipline on term_discipline.id_discipline = discipline.id\n" +
+//                    "where term_discipline.id_term='1' \n" +
+//                    "and discipline.status = '1' ");
+            ResultSet rs = stmt.executeQuery("SELECT d.id, d.discipline FROM students_19.term_discipline \n" +
+                    "left join discipline on term_discipline.id_discipline = discipline.id\n" +
+                    "where term_discipline.id_term='" + idTerm + "'\n" +
+                    "and discipline.status = '1' ");
+
+//            ResultSet rs = stmt.executeQuery("SELECT d.id, d.discipline FROM term_discipline as td" + //as - маска, для того, чтобы сократить название заменяем с помощью фы
+//                    "left join discipline as d on td.id_discipline = d.id\n" +// join - присоединение таблицы discipline к таблице term_discipline к колонке id_discipline
+//                    "where td.id_term =  '" + idTerm + "'" + // где id_term равно выбранному в браузере семестру
+//                    "and d.status = '1'");// выводит только активные дисциплины в выбранном семестре
 
             while (rs.next()) {
                 Discipline discipline = new Discipline();
                 discipline.setDiscipline(rs.getString("discipline"));
-                discipline.setId(rs.getInt("id"));
+                discipline.setId(rs.getInt("id_discipline"));
                 disciplines.add(discipline);
             }
         } catch (Exception e) {
@@ -199,9 +207,9 @@ public class DBManager {
     public static ArrayList<Term> getAllActiveTerms() {
         ArrayList<Term> terms = new ArrayList<Term>();
         try {
-            Class.forName(Constants.MYSQL_DRIVER); // объявили драйвер
-            Connection conn = DriverManager.getConnection(Constants.DB_URL);//  создали и подключились к БД
-            Statement stmt = conn.createStatement();// создали отправку в БД
+            Class.forName(Constants.MYSQL_DRIVER);
+            Connection conn = DriverManager.getConnection(Constants.DB_URL);
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from `term` where `status`='1'");
 
             int count = 1; // счетчик для установления имени семестру, т.к. у него нет названия
@@ -219,40 +227,7 @@ public class DBManager {
         return terms;
     }
 
-    //    public static ArrayList<Term> getAllActiveTerms() {
-//        ArrayList<Term> terms = new ArrayList<>();
-//        try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection conn = DriverManager.getConnection(Constants.PATH_TO_DATABASE);
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM semestr WHERE status = '1';");
-//
-//            while (rs.next()) {
-//                Term term = new Term();
-//                term.setId(rs.getInt("id"));
-//                term.setName(rs.getString("name"));
-//                term.setDuration(rs.getString("duration"));
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return terms;
-//    }
-    public static void createNewTerm(String name, String duration) {
-        try {
-            Class.forName(Constants.MYSQL_DRIVER);
-            Connection conn = DriverManager.getConnection(Constants.DB_URL);
-            Statement stmt = conn.createStatement();
-            stmt.execute("INSERT INTO `term` (`name`, `duration`) VALUES ('" + name + "', '" + duration + "');");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public static Term getTermByID(String id) {
-
         try {
             Class.forName(Constants.MYSQL_DRIVER); // объявили драйвер
             Connection conn = DriverManager.getConnection(Constants.DB_URL);//  создали и подключились к БД
@@ -270,6 +245,18 @@ public class DBManager {
         }
         return null;
     }
+
+    public static void createNewTerm(String name, String duration) {
+        try {
+            Class.forName(Constants.MYSQL_DRIVER);
+            Connection conn = DriverManager.getConnection(Constants.DB_URL);
+            Statement stmt = conn.createStatement();
+            stmt.execute("INSERT INTO `term` (`name`, `duration`) VALUES ('" + name + "', '" + duration + "');");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static boolean isVerifiedUser(String login, String password, String role) {
 
@@ -457,7 +444,7 @@ public class DBManager {
                 Student student = new Student();
                 student.setLastname(rs.getString("lastname"));
                 student.setName(rs.getString("name"));
-                student.setGroup(rs.getString("groupName"));
+                student.setId_group(rs.getInt("groupName"));
                 student.setDate(rs.getDate("date"));
                 return student;
             }

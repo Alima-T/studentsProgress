@@ -19,9 +19,6 @@
     <script>
         $( function() {
             $( "#datepicker" ).datepicker();
-            $( "#format" ).on( "change", function() {
-                $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
-            });
         } );
     </script>
     <title>Student-modify</title>

@@ -1,72 +1,29 @@
 package entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Term {
 private int id;
+private int idTerm;
 private String name;
 private String duration;
 private int status = 1;
 private ArrayList<Discipline> disciplines = new ArrayList<Discipline>();
 
-    public Term() {
-    }
-
-    public Term(int id, String name, String duration) {
-        this.id = id;
-        this.name = name;
-        this.duration = duration;
-    }
-
-    public void addDiscepline(Discipline discipline){
-        disciplines.add(discipline);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public ArrayList<Discipline> getDisciplines() {
-        return disciplines;
-    }
-
-    public void setDisciplines(ArrayList<Discipline> disciplines) {
-        this.disciplines = disciplines;
-    }
 
     @Override
     public String toString() {
         return "Term{" +
                 "id=" + id +
+                "id_term=" + idTerm +
                 ", name='" + name + '\'' +
                 ", duration='" + duration + '\'' +
                 ", status=" + status +
@@ -84,6 +41,6 @@ private ArrayList<Discipline> disciplines = new ArrayList<Discipline>();
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, duration, status, disciplines);
+        return Objects.hash(id,idTerm,name, duration, status, disciplines);
     }
 }

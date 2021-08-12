@@ -40,63 +40,65 @@
     </div>
 </section>
 <section class="general">
-<div class="col-lg-8">
-            <div class="margin-top">
-                <div class="main-title-page">
-                    Отображена успеваемость для следующего студента:
-                </div>
+    <div class="col-lg-8">
+        <div class="margin-top">
+            <div class="main-title-page">
+                <h3>Отображена успеваемость для следующего студента:</h3>
             </div>
-        </div>
- <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <table class="table-main-info table-one-student">
-                <input type="hidden" name="id" value="${id}">
-                <tbody>
-
-                <tr>
-                    <th>Фамилия</th>
-                    <th>Имя</th>
-                    <th>Группа</th>
-                    <th>Дата поступления</th>
-                </tr>
-
-                <tr>
-                    <td>${student.lastname}</td>
-                    <td>${student.name}</td>
-                    <td>${student.id_group}</td>
-                    <td>${student.date}</td>
-                </tr>
-
-                </tbody>
-            </table>
         </div>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="display-flex start for-mobile-display-block">
-                <div class="column-20"></div>
-                <div>
-                    <table class="table-main-info table-student-progress">
-                        <tbody><tr>
-                            <th>Дисциплина</th>
-                            <th>Оценка</th>
-                        </tr>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table-main-info table-one-student">
+                    <input type="hidden" name="id" value="${id}">
+                    <tbody>
 
-                        <c:forEach items="${disciplinesAndMarkByTerm}"  var="entry">
+                    <tr>
+                        <th>Фамилия</th>
+                        <th>Имя</th>
+                        <th>Группа</th>
+                        <th>Дата поступления</th>
+                    </tr>
+
+                    <tr>
+                        <td>${student.lastname}</td>
+                        <td>${student.name}</td>
+                        <td>${student.id_group}</td>
+                        <td>${student.date}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="display-flex start for-mobile-display-block">
+                    <div class="column-20"></div>
+                    <div>
+                        <table class="table-main-info table-student-progress">
+                            <tbody>
                             <tr>
-                                <td>${entry.key.discipline}</td>
-                                <td>${entry.value}</td>
+                                <th>Дисциплина</th>
+                                <th>Оценка</th>
                             </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+
+                            <c:forEach items="${disciplinesAndMarkByTerm}" var="entry">
+                                <tr>
+                                    <td>${entry.key.discipline}</td>
+                                    <td>${entry.value}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-       </div>
-</div>
+        </div>
+    </div>
 </section>
 
 

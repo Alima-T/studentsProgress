@@ -22,7 +22,6 @@
                 <li class="nav-item ">
                     <a class="nav-link active home" aria-current="page" href="../index.jsp">На главную</a>
                     <a class="a-na-glavnuu" href="/disciplines">Назад</a>
-
                 </li>
                 <li class="nav-item ">
                     <c:choose>

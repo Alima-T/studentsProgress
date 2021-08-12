@@ -1,76 +1,20 @@
 package entity;
 
+import lombok.Data;
+
 import java.sql.Date;
 import java.util.Objects;
 
+@Data
 public class Student {
     private int id;
     private String lastname;
     private String name;
-    private String group;
+    private Integer id_group;
     private Date date;
     private int status=1;
 
 
-
-    public Student() {
-    }
-
-    public Student(int id, String lastname, String name, String group, Date date) {
-        this.id = id;
-        this.lastname = lastname;
-        this.name = name;
-        this.group = group;
-        this.date = date;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     @Override
     public String toString() {
@@ -78,7 +22,7 @@ public class Student {
                 "id=" + id +
                 ", lastname='" + lastname + '\'' +
                 ", name='" + name + '\'' +
-                ", group=" + group +
+                ", group=" + id_group +
                 ", date=" + date +
                 ", status=" + status +
                 '}';
@@ -89,11 +33,11 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return id == student.id && status == student.status && Objects.equals(lastname, student.lastname) && Objects.equals(name, student.name) && Objects.equals(group, student.group) && Objects.equals(date, student.date);
+        return id == student.id && status == student.status && Objects.equals(lastname, student.lastname) && Objects.equals(name, student.name) && Objects.equals(id_group, student.id_group) && Objects.equals(date, student.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastname, name, group, date, status);
+        return Objects.hash(id, lastname, name, id_group, date, status);
     }
 }

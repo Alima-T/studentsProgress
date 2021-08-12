@@ -20,7 +20,7 @@
         <div class="sheme_input">
             <ul class="nav nav-pills navbar">
                 <li class="nav-item ">
-                    <a class="nav-link active home" aria-current="page" href="../index.jsp">Home</a>
+                    <a class="nav-link active home" aria-current="page" href="../index.jsp">На главную</a>
                 </li>
                 <li class="nav-item ">
                     <c:choose>

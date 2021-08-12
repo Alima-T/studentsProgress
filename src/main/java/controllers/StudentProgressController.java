@@ -19,8 +19,7 @@ public class StudentProgressController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("idStudent");
-////        idStudent получили сo student-progress страницы
+        String id = req.getParameter("idStudent"); //idStudent получили сo страницы student
 //        if (id.equals("")) {
 //            resp.sendRedirect("/student-progress");
 //        } else {

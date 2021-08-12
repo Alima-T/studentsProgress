@@ -31,10 +31,7 @@ public class TermsModifyController extends HttpServlet {
                 }
             }
         }
-
         req.setAttribute("allDisciplines", allDisciplines);// namesOfTerms - название атрибута пойдет в jsp страницу в <c:forEach items="${namesOfTerms}" var="t">
-
-
         req.setAttribute("term", term);
 
         req.getRequestDispatcher("WEB-INF/jsp/term-modify.jsp").forward(req, resp); //отправляем на отображение, перенаправляем на jsp страницу terms
