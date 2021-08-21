@@ -50,15 +50,10 @@ public class DBManager {
         return student;
     }
 
-    public static void createNewStudent(String lastName, String name, Group group, Date date) {
-
-
-    }
-
-    public static void createNewStudent(String lastname, String name, String group, String date) {
+    public static void createNewStudent(String lastname, String name, String id_group, String date, String status) {
         try {
-            Constants.DB.execute("INSERT INTO `students_19`.`student` (`lastname`, `name`, `group`, `date`) " +
-                    "VALUES ('" + lastname + "', '" + name + "', '" + group + "', '" + date + "');");
+            Constants.DB.execute ("INSERT INTO `students_19`.`student` ( `lastname`, `name`, `id_group`, `date`, `status`) VALUES ('" + lastname + "', '" + name + "', '" + id_group + "', '" + date + "', '" + status + "');");
+
 
         } catch (Exception e) {
             e.printStackTrace();

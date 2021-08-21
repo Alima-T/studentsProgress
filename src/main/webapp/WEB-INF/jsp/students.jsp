@@ -52,16 +52,16 @@
                     <form action="/student-create"method="get">
                         <input type="submit" value="Создать студента">
                     </form>
+
                     <input type="submit" onclick="modifyStudent()" value="Изменить запись выбранного студента">
                     <input type="submit" onclick="deleteStudents()" value="Удалить записи выбранных студентов">
-
+            </c:if>
                     <form id="formModify" action="/student-modify" method = "get">
-                    <input type ="hidden" id="hiddenModifyId" name= "hiddenModify">
+                    <input type ="hidden" id="hiddenModify" name= "hiddenModify">
                 </form>
                 <form id="formDelete" action="/students-delete" method = "post">
                     <input type ="hidden" id="hiddenDelete" name= "hiddenDelete">
                 </form>
-          </c:if>
         </div>
     </div>
 </section>
@@ -76,7 +76,7 @@
                     <td>Группа</td>
                     <td>Дата поступления</td>
                 </tr>
-                <c:forEach items="${allStudents}" var="stud">   <%--  allStudents - copypass из req.setAttribute - DisciplinesController&ndash;%&gt;--%>
+                <c:forEach items="${allStudents}" var="stud">   <%--  allStudents - copypass из StudentsController req.setAttribute("allStudents", students);--%>
                 <tr>
                     <td><input type="checkbox" value="${stud.id}"></td>
                     <td>${stud.lastname}</td>

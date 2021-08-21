@@ -49,20 +49,23 @@
 </section>
 
 <h3>Для создания новой записи студента введите данные и нажмите на кнопку "Создать"</h3>
-
+<%-- оборачиваем в form, иначе не работают кнопки.
+action передает данные на контроллер по urlPatterns = "/student-create"--%>
 <form action="/student-create" method="post">
-
     <label>Фамилия</label>
-    <input type="text" lastname="creatStudLastname">
+    <input type="text" lastname="createStudLastname" maxlength="50" size="35" class="text" value="${student.lastname}">
 
     <label>Имя</label>
-    <input type="text" name="creatStudName">
+    <input type="text" name="createStudName" maxlength="50" size="35" class="text" value="${student.name}">
 
     <label>Группа</label>
-    <input type="text" group="creatStudGroup">
+    <input type="text" group="createStudGroup" maxlength="5" size="5" class="text" value="${student.id_group}">
 
-    <label>Дата</label>
-    <input type="text" id="datepicker" name="date">
+    <label>Дата поступления</label>
+    <input type="text" id="datepicker" name="date" maxlength="10" size="10" class="text" value="${student.date}">
+
+    <label>Статус</label>
+    <input type="text" name="createStatus" maxlength="5" size="5" class="text" value="${student.status}">
 
     <input type="submit" value="Создать">
 </form>
