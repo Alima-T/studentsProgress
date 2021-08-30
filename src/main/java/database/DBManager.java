@@ -114,7 +114,6 @@ public class DBManager {
         }
     }
 
-
     public static void modifyDiscipline(String id, String disc) {
         try {
             Constants.DB.execute("UPDATE `students_19`.`discipline` SET `discipline` = '" + disc + "' WHERE (`id` = '" + id + "');");

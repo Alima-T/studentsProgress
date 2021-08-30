@@ -1,53 +1,19 @@
 package entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Objects;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Discipline {
     private int id;
     private String discipline;
     private int status=1;
     private boolean selected = false;
-
-    public Discipline() {
-
-    }
-
-    public Discipline(int id, int status) {
-        this.id = id;
-        this.status = status;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getDiscipline() {
-        return discipline;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
 
     @Override
     public String toString() {
