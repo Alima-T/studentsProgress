@@ -15,11 +15,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function () {
-            $("#datepicker").datepicker();
-        });
-    </script>
+    <script>$(function () {
+        $("#datepicker").datepicker();
+    });</script>
     <title>Student-create</title>
 </head>
 <body>
@@ -69,11 +67,9 @@ action передает данные на контроллер по urlPatterns 
 
     <input type="submit" value="Создать">
 </form>
-
 <c:if test="${message eq 'error'}">
     <h5>Поле не должно быть пустым!</h5>
 </c:if>
-
 
 </body>
 </html>

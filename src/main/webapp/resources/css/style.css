@@ -1,36 +1,95 @@
 html {
-    background-image: url(../images/bgPicture.jpg);
-    background-repeat: no-repeat;
+    background-color: aliceblue;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
+}
+a {
+    margin: 10px 40px;
 }
 
+h1,
 h3,
 h5 {
     text-align: center;
 }
 
-.btn-primary1 {
-    color: #000000;
-    background-color: rgb(220, 220, 220);
-    border-color: rgb(72, 72, 72);
-;
-}
+/*.btn-primary1 {*/
+/*    color: #000000;*/
+/*    background-color: rgb(220, 220, 220);*/
+/*    border-color: rgb(72, 72, 72);;*/
+/*}*/
 
-.active1 {
-    color: #000000;
-    background-color: rgb(220, 220, 220);
-    border-color: rgb(72, 72, 72);
-;
-}
+/*.active1 {*/
+/*    color: #000000;*/
+/*    background-color: rgb(220, 220, 220);*/
+/*    border-color: rgb(72, 72, 72);;*/
+/*}*/
 
-.input-group1 {
+/*.input-group1 {*/
+/*    position: relative;*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    align-items: stretch;*/
+/*    width: 100%;*/
+/*}*/
+
+.multiple {
     position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    width: 100%;
+    height: 200px;
 }
+
+                      /*TD {*/
+                      /*    vertical-align: top; !* Выравнивание по верхнему краю ячейки *!*/
+                      /*}*/
+/*html, body {margin:0;padding:0;}*/
+/*.main {*/
+/*    margin:0 auto; !* Центрируем блоки *!*/
+/*    width:100%; !* Задаем ширину 100%, чтобы сделать ее резиновой *!*/
+/*    max-width:700px; !* Устанавливаем максимальную ширину *!*/
+/*}*/
+.inline div {
+    display:inline-block; /* Делаем блоки по горизонтали */
+    display: -moz-inline-stack; /* Для FireFox 2, тот же самый, что и inline-block */
+    vertical-align:top; /* Выравниваем их сверху */
+    font-size:16px; /* Ставим дочкам размер шрифта, иначе примет значение родителя */
+    /* Для IE 6 и IE 7, чтобы блоки были по горизонтали
+    zoom: 1;
+    *display: inline;
+    */
+}
+div.inline {font-size:0;} /* Ставим родителю значение 0, чтобы убрать отступы у блоков*/
+.left-block {
+    width:25%; /*Задаем ширину в процентах чтобы сделать ее резиновой*/
+    height:300px; /* Высота блока */
+    position: -ms-device-fixed;
+}
+.content {
+    width:50%;
+    height:300px;
+    position: -ms-device-fixed;
+}
+.right-block {
+    width:25%;
+    height:300px;
+    position: -ms-device-fixed;
+}
+
+TABLE {
+    width: 300px;
+    border: 1px solid #7b7b7c; /* Рамка вокруг таблицы */
+    border-collapse: collapse; /* Убираем двойные линии между ячейками */
+    text-align: left;
+}
+TD, TH {
+    padding: 3px; /* Поля вокруг содержимого ячейки */
+    border: 1px solid #7b7b7c;
+    height: 50px;
+    vertical-align: top;
+}
+
+TH {
+    background: #B9B6B6FC; /* Цвет фона */
+}
+

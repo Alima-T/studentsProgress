@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,55 +14,55 @@
     в этот момент Maven собирает наш проект и создает папку target, куда помещает итоговый заархивированный в war продукт
     далее копируем этот архив и помещаем в Tomcat в папку webapps. В этот момент Tomcat сам разархивирует папку.
     Далее удаляем папку ROOT и переименовываем папку нашего проекта в ROOT, для того чтобы в браузере не писать через /название нашего проекта-->
-<dependencies>
-    <!--Если мы что то меняем в проекте, то нужно снова пересобирать war, пересохранять его в папке Tomcat и перезапускать.
-    Чтобы не делать повторных действий подсоединяем Tomcat к Idea Maven, тогда при запуске Idea, Tomcat автоматически обновляется.
-    Выбираем Add Configuration, НЕ ВЫБИРАЕМ template, а нажимаем + и выбираем Tomcat Server -> Local -местный (remote- удаленный).
-    Название - Пуск, Application server - configure-> находим и выбираем папку Tomcat до bin, подтягивается версия -> Ok,
-    Далее где Warning (alarm!): No artifacts marked for deployment (развертывание), нажимаем fix и выьираем названиеПроекта.war (для развертывания)
-    А если бы не было, то мы бы внизу выбирали и наш war указывали бы??? Далее переходим в Deployment в ячейке Application context удаляем все до слеша или даже вместе со /
-    -->
-    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-    <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>3.0.1</version>
-        <scope>provided</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.25</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/jstl/jstl -->
-    <dependency>
-        <!--При наполнении страниц нам понадобятся некоторые приемы. Например чтобы вывести список фильмов нужен цикл,
-        если, допустим, хотим менять какую-то надпись, в зависимости от параметров, нужны условия и т.д.
-        Формат JSP (JavaServer Pages) позволяет использовать вставки java-кода, с которыми это все можно реализовать.
-        Но использовать на странице java-код вперемешку с HTML-кодом очень некрасиво.
-Для решения этой проблемы существует JSTL (JavaServer Pages Standard Tag Library)
-или Стандартная Библиотека Тегов JSP. Она позволяет использовать в jsp-страницах целую кучу доп. тегов для самых разных нужд.
-Подключим ее в pom.xml:-->
-        <groupId>jstl</groupId>
-        <artifactId>jstl</artifactId>
-        <version>1.2</version>
-    </dependency>
-    <dependency>
-        <groupId>org.json</groupId>
-        <artifactId>json</artifactId>
-        <version>20140107</version>
-    </dependency>
+    <dependencies>
+        <!--Если мы что то меняем в проекте, то нужно снова пересобирать war, пересохранять его в папке Tomcat и перезапускать.
+        Чтобы не делать повторных действий подсоединяем Tomcat к Idea Maven, тогда при запуске Idea, Tomcat автоматически обновляется.
+        Выбираем Add Configuration, НЕ ВЫБИРАЕМ template, а нажимаем + и выбираем Tomcat Server -> Local -местный (remote- удаленный).
+        Название - Пуск, Application server - configure-> находим и выбираем папку Tomcat до bin, подтягивается версия -> Ok,
+        Далее где Warning (alarm!): No artifacts marked for deployment (развертывание), нажимаем fix и выьираем названиеПроекта.war (для развертывания)
+        А если бы не было, то мы бы внизу выбирали и наш war указывали бы??? Далее переходим в Deployment в ячейке Application context удаляем все до слеша или даже вместе со /
+        -->
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.25</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jstl/jstl -->
+        <dependency>
+            <!--При наполнении страниц нам понадобятся некоторые приемы. Например чтобы вывести список фильмов нужен цикл,
+            если, допустим, хотим менять какую-то надпись, в зависимости от параметров, нужны условия и т.д.
+            Формат JSP (JavaServer Pages) позволяет использовать вставки java-кода, с которыми это все можно реализовать.
+            Но использовать на странице java-код вперемешку с HTML-кодом очень некрасиво.
+    Для решения этой проблемы существует JSTL (JavaServer Pages Standard Tag Library)
+    или Стандартная Библиотека Тегов JSP. Она позволяет использовать в jsp-страницах целую кучу доп. тегов для самых разных нужд.
+    Подключим ее в pom.xml:-->
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20140107</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>1.18.20</version>
-        <scope>provided</scope>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
+        </dependency>
 
-</dependencies>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

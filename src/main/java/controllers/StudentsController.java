@@ -1,7 +1,6 @@
 package controllers;
 
 import database.DBManager;
-import entity.Discipline;
 import entity.Student;
 
 import javax.servlet.ServletException;
@@ -11,9 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet (name = "StudentsController", urlPatterns = "/students")
+@WebServlet(name = "StudentsController", urlPatterns = "/students")
 
 public class StudentsController extends HttpServlet {
     @Override
@@ -27,7 +25,7 @@ public class StudentsController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String ids = req.getParameter("idStudent"); //s - имя hidden
         String[] idsMassiv = ids.split(",");
-        for(String id: idsMassiv){
+        for (String id : idsMassiv) {
             DBManager.deleteStudents(id);
         }
         resp.sendRedirect("/students");

@@ -11,12 +11,12 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Term {
-private int id;
-private int idTerm;
-private String name;
-private String duration;
-private int status = 1;
-private ArrayList<Discipline> disciplines = new ArrayList<Discipline>();
+    private int id;
+    private int idTerm;
+    private String name;
+    private String duration;
+    private int status = 1;
+    private ArrayList<Discipline> disciplines = new ArrayList<Discipline>();
 
 
     @Override
@@ -41,6 +41,6 @@ private ArrayList<Discipline> disciplines = new ArrayList<Discipline>();
 
     @Override
     public int hashCode() {
-        return Objects.hash(id,idTerm,name, duration, status, disciplines);
+        return Objects.hash(id, idTerm, name, duration, status, disciplines);
     }
 }

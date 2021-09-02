@@ -25,7 +25,7 @@ public class DisciplinesController extends HttpServlet {
         } else {
             int value = Integer.parseInt(counter.getValue());// better than getValue
             value++;
-         counter.setValue(String.valueOf(value)); // или counter.setValue(value+"");
+            counter.setValue(String.valueOf(value)); // или counter.setValue(value+"");
 
         }
         resp.addCookie(counter);

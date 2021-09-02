@@ -1,14 +1,14 @@
 function modifyDiscipline() {
     var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
-    if(checkedBoxes.length == 0){
+    if (checkedBoxes.length == 0) {
         alert("Пожалуйста, выберите одну дисциплину")
         return;
     }
-    if(checkedBoxes.length > 1){
+    if (checkedBoxes.length > 1) {
         alert("Пожалуйста, выберите только одну дисциплину")
         return;
     }
-var id =checkedBoxes[0].getAttribute("value");
+    var id = checkedBoxes[0].getAttribute("value");
     var hidden = document.getElementById("hiddenModify")
     hidden.setAttribute("value", id);
     var form = document.getElementById("formModify");
@@ -17,13 +17,41 @@ var id =checkedBoxes[0].getAttribute("value");
 
 function deleteDisciplines() {
     var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
-    if(checkedBoxes.length == 0){
+    if (checkedBoxes.length == 0) {
         alert("Пожалуйста, выберите хотя бы одну дисциплину")
         return;
     }
-    var ids=""; // 1-3-7-
-    for(var i=0;i<checkedBoxes.length; i++){
-        ids = ids+checkedBoxes[i].getAttribute("value")+"-"
+    var ids = ""; // 1-3-7-
+    for (var i = 0; i < checkedBoxes.length; i++) {
+        ids = ids + checkedBoxes[i].getAttribute("value") + "-"
+    }
+    var hidden = document.getElementById("hiddenDelete")
+    hidden.setAttribute("value", ids);
+    var form = document.getElementById("formDelete");
+    form.submit();
+}
+function createTerm() {
+    var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
+    if (checkedBoxes.length == 0) {
+        alert("Пожалуйста, выберите одну дисциплину")
+        return;
+    }
+    if (checkedBoxes.length > 1) {
+        alert("Пожалуйста, выберите только одну дисциплину")
+        return;
+    }
+    var id = checkedBoxes[0].getAttribute("value");
+    var hidden = document.getElementById("hiddenModify")
+    hidden.setAttribute("value", id);
+    var form = document.getElementById("formModify");
+    form.submit();
+}
+
+function deleteTerm() {
+    var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
+    var ids = ""; // 1-3-7-
+    for (var i = 0; i < checkedBoxes.length; i++) {
+        ids = ids + checkedBoxes[i].getAttribute("value") + "-"
     }
     var hidden = document.getElementById("hiddenDelete")
     hidden.setAttribute("value", ids);
@@ -32,19 +60,19 @@ function deleteDisciplines() {
 }
 
 function deleteStudents() {
-    var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
-    if(checkedBoxes.length == 0){
-        alert("Пожалуйста, выберите хотя бы одного студента")
+    var items = $("input[type=checkbox]:checked");
+    if (items.length == 0) {
+        alert("Пожалуйста, выберите хотя бы одного студента!");
         return;
     }
-    var ids=""; // 1-3-7-
-    for(var i=0;i<checkedBoxes.length; i++){
-        ids = ids+checkedBoxes[i].getAttribute("value")+"-"
+
+    var idStudentSelected = "";
+    for (var i = 0; i < items.length; ++i) {
+        idStudentSelected = idStudentSelected + $(items[i]).attr("value") + ",";
     }
-    var hidden = document.getElementById("hiddenDelete")
-    hidden.setAttribute("value", ids);
-    var form = document.getElementById("formDelete");
-    form.submit();
+
+    $("#idStudentDisc").val(idStudentSelected);
+    $('#delete-students-form').submit();
 }
 
 function modifyStudent() {
@@ -80,7 +108,6 @@ function studentProgress() {
     var form = document.getElementById("formStudentProgress")
     form.submit();
 }
-
 
 
 function modifyStudent() {

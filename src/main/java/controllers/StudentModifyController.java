@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-@WebServlet(name="StudentModifyController", urlPatterns = "/student-modify")
+@WebServlet(name = "StudentModifyController", urlPatterns = "/student-modify")
 public class StudentModifyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,11 +42,11 @@ public class StudentModifyController extends HttpServlet {
         String modifiedGroup = req.getParameter("modifiedGroup");
         String modifiedDate = req.getParameter("modifiedDate");
         String dateFormat = null;
-        if (modifiedLastName.equals("") || modifiedFirstName.equals("")|| modifiedGroup.equals("") || modifiedDate.equals("")){
-            req.setAttribute("error","1");
-            req.getRequestDispatcher("WEB-INF/jsp/student-modify.jsp").forward(req,resp);
-        }else {
-            if (!modifiedDate.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")){
+        if (modifiedLastName.equals("") || modifiedFirstName.equals("") || modifiedGroup.equals("") || modifiedDate.equals("")) {
+            req.setAttribute("error", "1");
+            req.getRequestDispatcher("WEB-INF/jsp/student-modify.jsp").forward(req, resp);
+        } else {
+            if (!modifiedDate.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
                 String pattern = "MM/dd/yyyy";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 Date date2 = null;
@@ -60,7 +60,7 @@ public class StudentModifyController extends HttpServlet {
                 dateFormat = simpleDateFormat1.format(date2);
                 DBManager.modifyStudent(id, modifiedLastName, modifiedFirstName, modifiedGroup, modifiedDate);
                 resp.sendRedirect("/students");
-            }else{
+            } else {
                 DBManager.modifyStudent(id, modifiedLastName, modifiedFirstName, modifiedGroup, modifiedDate);
                 resp.sendRedirect("/students");
             }

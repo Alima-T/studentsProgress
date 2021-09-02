@@ -17,55 +17,62 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
-        } );
+        $(function () {
+            $("#datepicker").datepicker();
+        });
     </script>
     <title>Student-modify</title>
 </head>
 
 <body>
-<section class="header">
-    <div class="container">
-        <div class="sheme_input">
-            <ul class="nav nav-pills navbar">
-                <li class="nav-item ">
-                    <a class="nav-link active home" aria-current="page" href="../index.jsp">На главную</a>
-                    <a class="a-na-glavnuu" href="/students">Назад</a>
-                </li>
-                <li class="nav-item ">
-                    <c:choose>
-                        <c:when test="${role ne null}">
-                            <a href="/logout">Logout</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="/login">Login</a>
-                        </c:otherwise>
-                    </c:choose>
-                </li>
-            </ul>
-            <div></div>
-            <h1>Система управления студентами и их успеваемостью</h1>
+<div class="main inline">
+    <div class="left-block">
+        <a class="nav-link active home" aria-current="page" href="../index.jsp">На главную</a>
+    </div>
+
+    <div class="content">
+        <h1>Система управления студентами и их успеваемостью</h1>
+        <div class="col-md-4">
+            <h3>Для внесения изменения в запись студента заполните все поля и нажмите на кнопку "Применить"</h3>
+            <label>Название</label>
+            <form action="/student-modify" method="post">
+                <div CLASS="div-for-student-modifing">
+                    <input type="hidden" name="id" value="${id}">
+                    <div class="display-flex"><label>Фамилия</label>
+                        <input type="text" name="modifiedLastname"value="${selectedStudent.lastname}"></div>
+                    <div class="display-flex"><label>Имя</label>
+                        <input type="text" name="modifiedName"value="${selectedStudent.name}"></div>
+                    <div class="display-flex"><label>Группа</label>
+                        <input type="text" name="modifiedGroup"value="${selectedStudent.id_group}"></div>
+                    <div class="display-flex"><label>Дата поступления</label>
+                        <input name="modifiedDate" type="text" id="datepicker"
+                               autocomplete="off"value="${selectedStudent.date}"></div>
+                    <div class="display-flex"><input type="submit" value="Применить"></div>
+                </div>
+            </form>
         </div>
     </div>
-</section>
 
-<h3>Для внесения изменения в запись студента заполните все поля и нажмите на кнопку "Применить"</h3>
-<label>Название</label>
-<form action="/student-modify" method="post">
-    <div CLASS="div-for-student-modifing">
-        <input type="hidden" name="id" value="${id}">
-        <div class="display-flex"><label>Фамилия</label><input type="text" name="modifiedLastname" value="${selectedStudent.lastname}"></div>
-        <div class="display-flex"><label>Имя</label><input type="text" name="modifiedName" value="${selectedStudent.name}"></div>
-        <div class="display-flex"><label>Группа</label><input type="text" name="modifiedGroup" value="${selectedStudent.id_group}"></div>
-        <div CLASS="display-flex"><label>Дата поступления</label><input name="modifiedDate" type="text" id="datepicker" autocomplete="off" value="${selectedStudent.date}"></div>
-        <div class="display-flex"><input type="submit" value="Применить"></div>
+    <div class="right-block">
+        <c:choose>
+            <c:when test="${role ne null}">
+                <a href="/logout">Logout</a>
+            </c:when>
+            <c:otherwise>
+                <a href="/login">Login</a>
+            </c:otherwise>
+        </c:choose>
     </div>
-</form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
 
-<c:if test="${message eq 'error'}">
-    <h5>Поле не должно быть пустым!</h5>
-</c:if>
+</body>
+</html>
+
+
+
 </body>
 
 </html>

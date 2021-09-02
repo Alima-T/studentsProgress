@@ -23,18 +23,18 @@ public class StudentProgressController extends HttpServlet {
 //        if (id.equals("")) {
 //            resp.sendRedirect("/student-progress");
 //        } else {
-            req.setAttribute("id", id);
+        req.setAttribute("id", id);
 //            передали значение id в name в строку <input type="hidden" name="id" value="${id}"> в student-progress.jsp
-            Student student  = DBManager.getStudent(id);
-            req.setAttribute("student", student);
+        Student student = DBManager.getStudent(id);
+        req.setAttribute("student", student);
 
-            ArrayList<Term> terms = DBManager.getAllActiveTerms();
-            req.setAttribute("allTerms", terms);
-            req.setAttribute("selectedTerm", terms.get(0));
+        ArrayList<Term> terms = DBManager.getAllActiveTerms();
+        req.setAttribute("allTerms", terms);
+        req.setAttribute("selectedTerm", terms.get(0));
 
-            req.getRequestDispatcher("WEB-INF/jsp/student-progress.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/jsp/student-progress.jsp").forward(req, resp);
 
-        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,7 +51,7 @@ public class StudentProgressController extends HttpServlet {
                 req.setAttribute("allDisciplinesByTerm", disciplinesByTerm);
 
                 req.setAttribute("id", id);
-                Student student  = DBManager.getStudent(id);
+                Student student = DBManager.getStudent(id);
                 req.setAttribute("student", student);
 
                 LinkedHashMap<Discipline, String> disciplinesAndMarkByTerm = DBManager.getDisciplinesAndMarkByTerm(id, termId);

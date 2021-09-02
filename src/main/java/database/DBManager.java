@@ -6,7 +6,7 @@ import entity.Group;
 import entity.Student;
 import entity.Term;
 
-import java.sql.*;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
@@ -17,7 +17,8 @@ public class DBManager {
     public static ArrayList<Student> getAllActiveStudents() {
         ArrayList<Student> students = new ArrayList<Student>();
         try {
-            ResultSet rs = Constants.DB.executeQuery("select * from `students_19`.`student` where `status`='1'");
+            String id;
+            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM `students_19`.`student` WHERE status = '1'");
             while (rs.next()) {
                 Student student = new Student();
                 student.setId(rs.getInt("id"));
@@ -34,7 +35,8 @@ public class DBManager {
     }
 
     public static Student getStudentByID(String id) {
-        Student student = new Student();
+        Student student = new Student();       
+        ArrayList<Student> students = new ArrayList<>();
         try {
             ResultSet rs = Constants.DB.executeQuery("SELECT * FROM `students_19`.`student` WHERE status = '1' AND id = " + id + ";");
             while (rs.next()) {
@@ -52,9 +54,8 @@ public class DBManager {
 
     public static void createNewStudent(String lastname, String name, String id_group, String date, String status) {
         try {
-            Constants.DB.execute ("INSERT INTO `students_19`.`student` ( `lastname`, `name`, `id_group`, `date`, `status`) VALUES ('" + lastname + "', '" + name + "', '" + id_group + "', '" + date + "', '" + status + "');");
-
-
+            Constants.DB.execute("INSERT INTO `students_19`.`student` ( `lastname`, `name`, `id_group`, `date`, `status`) " +
+                    "VALUES ('" + lastname + "', '" + name + "', '" + id_group + "', '" + date + "', '" + status + "');");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,10 +139,10 @@ public class DBManager {
 //                    "left join discipline on term_discipline.id_discipline = discipline.id\n" +
 //                    "where term_discipline.id_term='1' \n" +
 //                    "and discipline.status = '1' ");
-            ResultSet rs = Constants.DB.executeQuery("SELECT d.id, d.discipline FROM students_19.term_discipline \n" +
-                    "left join discipline on term_discipline.id_discipline = discipline.id\n" +
-                    "where term_discipline.id_term='" + idTerm + "'\n" +
-                    "and discipline.status = '1' ");
+            ResultSet rs = Constants.DB.executeQuery("SELECT d.id, d.discipline FROM students_19.term_discipline as td \n" +
+                    "left join discipline as d on td.id_discipline = d.id\n" +
+                    "where td.id_term='" + idTerm + "'\n" +
+                    "and d.status = '1' ");
 //            ResultSet rs = stmt.executeQuery("SELECT d.id, d.discipline FROM term_discipline as td" + //as - маска, для того, чтобы сократить название заменяем с помощью фы
 //                    "left join discipline as d on td.id_discipline = d.id\n" +// join - присоединение таблицы discipline к таблице term_discipline к колонке id_discipline
 //                    "where td.id_term =  '" + idTerm + "'" + // где id_term равно выбранному в браузере семестру
@@ -149,7 +150,7 @@ public class DBManager {
             while (rs.next()) {
                 Discipline discipline = new Discipline();
                 discipline.setDiscipline(rs.getString("discipline"));
-                discipline.setId(rs.getInt("id_discipline"));
+                discipline.setId(rs.getInt("id"));
                 disciplines.add(discipline);
             }
         } catch (Exception e) {

@@ -34,7 +34,7 @@ public class StudentCreateController extends HttpServlet {
             req.getRequestDispatcher("WEB-INF/jsp/student-create.jsp").forward(req, resp);
         } else {
             String dateFromUser = req.getParameter("date");
-            DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+            DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             Date date = null;
             try {
                 date = format.parse(dateFromUser);

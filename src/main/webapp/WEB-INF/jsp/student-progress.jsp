@@ -15,90 +15,140 @@
 </head>
 
 <body>
-<section class="header">
-    <div class="container">
-        <div class="sheme_input">
-            <ul class="nav nav-pills navbar">
-                <li class="nav-item ">
-                    <a class="nav-link active home" aria-current="page" href="../index.jsp">На главную</a>
-                    <a class="a-na-glavnuu" href="/students">Назад</a>
-                </li>
-                <li class="nav-item ">
-                    <c:choose>
-                        <c:when test="${role ne null}">
-                            <a href="/logout">Logout</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="/login">Login</a>
-                        </c:otherwise>
-                    </c:choose>
-                </li>
-            </ul>
-            <div></div>
-            <h1>Система управления студентами и их успеваемостью</h1>
-        </div>
+<div class="main inline">
+    <div class="left-block">
+        <a class="nav-link active home" aria-current="page" href="../index.jsp">На главную</a>
     </div>
-</section>
-<section class="general">
-    <div class="col-lg-8">
-        <div class="margin-top">
-            <div class="main-title-page">
-                <h3>Отображена успеваемость для следующего студента:</h3>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <table class="table-main-info table-one-student">
-                    <input type="hidden" name="id" value="${id}">
-                    <tbody>
 
+    <div class="content">
+        <h1>Система управления студентами и их успеваемостью</h1>
+        <h3>Отображена успеваемость для следующего студента:</h3>
+        <div class="col-md-4">
+            </form>
+            <table>
+                <tr>
+                    <th>Выбрать</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Группа</th>
+                    <th>Дата поступления</th>
+                </tr>
+                <c:forEach items="${allStudents}"
+                           var="stud">   <%--  allStudents - copypass из StudentsController req.setAttribute("allStudents", students);--%>
                     <tr>
-                        <th>Фамилия</th>
-                        <th>Имя</th>
-                        <th>Группа</th>
-                        <th>Дата поступления</th>
+                        <td><input type="checkbox" value="${stud.id}"></td>
+                        <td>${stud.lastname}</td>
+                        <td>${stud.name}</td>
+                        <td>${stud.id_group}</td>
+                        <td><fmt:formatDate value="${stud.date}" pattern="yyyy/MM/dd"></fmt:formatDate></td>
                     </tr>
-
-                    <tr>
-                        <td>${student.lastname}</td>
-                        <td>${student.name}</td>
-                        <td>${student.id_group}</td>
-                        <td>${student.date}</td>
-                    </tr>
-
-                    </tbody>
-                </table>
-            </div>
+                </c:forEach>
+            </table>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="display-flex start for-mobile-display-block">
-                    <div class="column-20"></div>
-                    <div>
-                        <table class="table-main-info table-student-progress">
-                            <tbody>
-                            <tr>
-                                <th>Дисциплина</th>
-                                <th>Оценка</th>
-                            </tr>
-
-                            <c:forEach items="${disciplinesAndMarkByTerm}" var="entry">
-                                <tr>
-                                    <td>${entry.key.discipline}</td>
-                                    <td>${entry.value}</td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
+    </section>
+</div>
+<div class="col-md-4">
+    <h4>Выбрать семестр </h4>
+    <div class="row">
+        <form action="/terms" method="get">
+            <div class="col-md-3">
+                <div class="submin_le">
+                    <select name="selected" class="form-select term" aria-label="Default select example">
+                        <c:forEach items="${terms}" var="t">
+                            <c:choose>
+                                <c:when test="${t.id == selectedTerm.id}">
+                                    <option selected value="${t.id}">${t.name}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${t.id}">${t.name}</option>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="submin_le">
+                    <div class="choose_input">
+                        <input type="submit" class="btn btn-primary apply" value="Выбрать">
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
+    <h4>Средняя оценка за семестр: 4,6 баллов</h4>
+    <div class="col-md-5">
+        <table class="table-main-info table-student-progress">
+            <tbody>
+            <tr>
+                <th class="table-active">Дисциплина</th>
+                <th>Оценка</th>
+            </tr>
+            <c:forEach items="${disciplines}" var="d">
+                <tr>
+                    <td>${d.discipline}</td>
+                    <td>${entry.value}</td>--%>
+                </tr>
+            </c:forEach>
+<%--            <c:forEach items="${disciplinesAndMarkByTerm}" var="entry">--%>
+<%--                <tr>--%>
+<%--                    <td>${entry.key.discipline}</td>--%>
+<%--                    <td>${entry.value}</td>--%>
+<%--                </tr>--%>
+<%--            </c:forEach>--%>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered border-primary">
+            <tr>
+                <th class="table-active">Название дисциплины</th>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+</div>
+<div class="right-block">
+    <c:choose>
+        <c:when test="${role ne null}">
+            <a href="/logout">Logout</a>
+        </c:when>
+        <c:otherwise>
+            <a href="/login">Login</a>
+        </c:otherwise>
+    </c:choose>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
+<table class="table-main-info table-student-progress">
+    <tbody>
+    <tr>
+        <th>Дисциплина</th>
+        <th>Оценка</th>
+    </tr>
+
+    <c:forEach items="${disciplinesAndMarkByTerm}" var="entry">
+        <tr>
+            <td>${entry.key.discipline}</td>
+            <td>${entry.value}</td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 
