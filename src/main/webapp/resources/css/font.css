@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Kalam", cursive;
+    font-weight: 400;
+    src: url("../fonts/Kalam-Regular.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    src: url("../fonts/Roboto-Bold.ttf") format("ttf");
+}

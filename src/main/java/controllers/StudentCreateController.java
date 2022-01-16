@@ -1,6 +1,8 @@
 package controllers;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import database.DBManager;
+import entity.Group;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @WebServlet(name = "StudentCreateController", urlPatterns = "/student-create")
 public class StudentCreateController extends HttpServlet {
@@ -24,20 +26,20 @@ public class StudentCreateController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String lastname = req.getParameter("lastname");
         String name = req.getParameter("name");
-        String id_group = (req.getParameter("id_group"));
-        String dateSt = req.getParameter("date");
-        String status = req.getParameter("status");
+        String group = req.getParameter("group_name");
+        Date date = Date.valueOf(req.getParameter("date"));
+        int status = Integer.parseInt(req.getParameter("status"));
 
-        if (lastname == null || name == null || id_group == null || dateSt == null || status == null ||
-                lastname.equals("") || name.equals("") || id_group.equals("") || dateSt.equals("") || status.equals("")) {
+        if (lastname == null || name == null || group == null || date == null || status == '0' ||
+                lastname.equals("") || name.equals("") || group.equals("") || date.equals("")|| status==0){
             req.setAttribute("message", "error");
             req.getRequestDispatcher("WEB-INF/jsp/student-create.jsp").forward(req, resp);
         } else {
             String dateFromUser = req.getParameter("date");
             DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-            Date date = null;
+            date = null;
             try {
-                date = format.parse(dateFromUser);
+                date = (Date) format.parse(dateFromUser);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -47,9 +49,9 @@ public class StudentCreateController extends HttpServlet {
 
             String pattern2 = "yyyy-MM-dd HH:mm:ss";
             SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat(pattern2);
-            String dateFormat = simpleDateFormat2.format(date);
+            Date dateFormat = Date.valueOf(simpleDateFormat2.format(date));
 
-            DBManager.createNewStudent(lastname, name, id_group, dateFormat, status);
+            DBManager.createNewStudent(lastname, name, group, dateFormat, status);
             resp.sendRedirect("/students"); //передаем управление на другой контроллер
         }
 

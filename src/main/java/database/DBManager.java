@@ -6,6 +6,7 @@ import entity.Group;
 import entity.Student;
 import entity.Term;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -14,6 +15,7 @@ import java.util.regex.Pattern;
 
 public class DBManager {
 
+//    STUDENTS
     public static ArrayList<Student> getAllActiveStudents() {
         ArrayList<Student> students = new ArrayList<Student>();
         try {
@@ -43,7 +45,7 @@ public class DBManager {
                 student.setId(rs.getInt("id"));
                 student.setLastname(rs.getString("lastname"));
                 student.setName(rs.getString("name"));
-                student.setId_group(rs.getInt("group"));
+                student.setId_group(rs.getInt("id_group"));
                 student.setDate(rs.getDate("date"));
             }
         } catch (Exception e) {
@@ -52,7 +54,7 @@ public class DBManager {
         return student;
     }
 
-    public static void createNewStudent(String lastname, String name, String id_group, String date, String status) {
+    public static void createNewStudent(String lastname, String name, String id_group, Date date, int status) {
         try {
             Constants.DB.execute("INSERT INTO `students_19`.`student` ( `lastname`, `name`, `id_group`, `date`, `status`) " +
                     "VALUES ('" + lastname + "', '" + name + "', '" + id_group + "', '" + date + "', '" + status + "');");
@@ -61,22 +63,46 @@ public class DBManager {
         }
     }
 
-    public static void deleteStudent(String id) {
+
+    public static void deleteStudents(String id) {
         try {
-            Constants.DB.execute("UPDATE `student` SET `status` = '0' WHERE (`id` = " + id + ");");
+            Constants.DB.execute("UPDATE `students_19`.`student` SET `status` = '0' WHERE (`id` = '" + id + "');\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void modifyStudent(String id, String lastname, String name, String group, String date) {
+public static void modifyStudent(String id, String lastname, String name, String id_group, String date){
         try {
-            Constants.DB.execute("UPDATE `student` SET `sername` = '" + lastname + "', `name` = '" + name + "', `group` = '" + group + "', `date` = '" + date + "' WHERE (`id` = '" + id + "');");
+            Constants.DB.execute("UPDATE `students_19'.`student` SET " +
+                    "`lastname` = '" + lastname + "', " +
+                    "`name` = '" + name + "', " +
+                    "`id_group` = '" + id_group + "', " +
+                    "`date` = '" + date + "' " +
+                    "WHERE (`id` = '" + id + "');");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public static Student getStudent(String id) {
+        try {
+            ResultSet rs = Constants.DB.executeQuery("select  lastname, name, id_group, date from students_19.student where id =" + id + "");
+            while (rs.next()) {
+                Student student = new Student();
+                student.setLastname(rs.getString("lastname"));
+                student.setName(rs.getString("name"));
+                student.setId_group(rs.getInt("id_group"));
+                student.setDate(rs.getDate("date"));
+                return student;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+//    DISCIPLINES
     public static ArrayList<Discipline> getAllActiveDisciplines() {
         ArrayList<Discipline> disciplines = new ArrayList<Discipline>();
         try {
@@ -159,6 +185,7 @@ public class DBManager {
         return disciplines;
     }
 
+//    TERMS
     public static ArrayList<Term> getAllActiveTerms() {
         ArrayList<Term> terms = new ArrayList<Term>();
         try {
@@ -194,29 +221,13 @@ public class DBManager {
         return null;
     }
 
-    public static void createNewTerm(String name, String duration) {
-        try {
-            Constants.DB.execute("INSERT INTO `term` (`name`, `duration`) VALUES ('" + name + "', '" + duration + "');");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static boolean isVerifiedUser(String login, String password, String role) {
-        try {
-            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM students_19.user_role as us\n" +
-                    "left join user as u on us.id_user = u.id \n" +
-                    "where u.login = '" + login + "' and u.password = '" + password + "' and us.id_role = " + role);
-            while (rs.next()) {
-                return true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
+//    public static void createNewTerm(String name, String duration) {
+//        try {
+//            Constants.DB.execute("INSERT INTO `term` (`name`, `duration`) VALUES ('" + name + "', '" + duration + "');");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public static void createTerm(String duration, String[] disciplines) {
 
@@ -248,13 +259,6 @@ public class DBManager {
         }
     }
 
-    public static void deleteStudents(String id) {
-        try {
-            Constants.DB.execute("UPDATE `students_19`.`students` SET `status` = '0' WHERE (`id` = '" + id + "');");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void deleteTerm(String idTermDelete) {
         try {
@@ -263,6 +267,7 @@ public class DBManager {
             e.printStackTrace();
         }
     }
+
 
     public static String getDisciplineName(String id) {
         String name = null;
@@ -337,31 +342,21 @@ public class DBManager {
         }
     }
 
-
-    public static void modifyStudent(String id, String modifiedLastName, String modifiedFirstName, int modifiedGroup, String modifiedDate) {
+    // LOGIN/LOGOUT
+    public static boolean isVerifiedUser(String login, String password, String role) {
         try {
-            Constants.DB.execute("UPDATE `students_19'.`students` SET `name` = '" + modifiedFirstName + "', `lastname` = '" + modifiedLastName + "', `id_group` = '" + modifiedGroup + "', `date` = '" + modifiedDate + "' WHERE (`id` = '" + id + "')");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static Student getStudent(String id) {
-        try {
-            ResultSet rs = Constants.DB.executeQuery("select  lastname, name, id_group, date from students_19.student where id =" + id + "");
+            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM students_19.user_role as us\n" +
+                    "left join user as u on us.id_user = u.id \n" +
+                    "where u.login = '" + login + "' and u.password = '" + password + "' and us.id_role = " + role);
             while (rs.next()) {
-                Student student = new Student();
-                student.setLastname(rs.getString("lastname"));
-                student.setName(rs.getString("name"));
-                student.setId_group(rs.getInt("groupName"));
-                student.setDate(rs.getDate("date"));
-                return student;
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return false;
     }
+
 
     public static LinkedHashMap<Discipline, String> getDisciplinesAndMarkByTerm(String id, String termId) {
         LinkedHashMap<Discipline, String> disciplinesAndMark = new LinkedHashMap<>();

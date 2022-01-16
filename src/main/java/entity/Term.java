@@ -36,7 +36,8 @@ public class Term {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Term term = (Term) o;
-        return id == term.id && status == term.status && Objects.equals(name, term.name) && Objects.equals(duration, term.duration) && Objects.equals(disciplines, term.disciplines);
+        return id == term.id && status == term.status && Objects.equals(name, term.name)
+                && Objects.equals(duration, term.duration) && Objects.equals(disciplines, term.disciplines);
     }
 
     @Override

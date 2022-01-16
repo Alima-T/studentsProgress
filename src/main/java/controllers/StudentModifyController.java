@@ -37,31 +37,31 @@ public class StudentModifyController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         String id = req.getParameter("id");
-        String modifiedLastName = req.getParameter("modifiedLastname");
-        String modifiedFirstName = req.getParameter("modifiedFirstName");
-        String modifiedGroup = req.getParameter("modifiedGroup");
-        String modifiedDate = req.getParameter("modifiedDate");
+        String lastname = req.getParameter("lastname");
+        String name = req.getParameter("name");
+        String id_group = req.getParameter("id_group");
+        String date = req.getParameter("date");
         String dateFormat = null;
-        if (modifiedLastName.equals("") || modifiedFirstName.equals("") || modifiedGroup.equals("") || modifiedDate.equals("")) {
+        if (lastname.equals("") || name.equals("") || id_group.equals("") || date.equals("")) {
             req.setAttribute("error", "1");
             req.getRequestDispatcher("WEB-INF/jsp/student-modify.jsp").forward(req, resp);
         } else {
-            if (!modifiedDate.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
+            if (!date.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
                 String pattern = "MM/dd/yyyy";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 Date date2 = null;
                 try {
-                    date2 = simpleDateFormat.parse(modifiedDate);
+                    date2 = simpleDateFormat.parse(date);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 String pattern1 = "yyyy-MM-dd HH:mm:ss";
                 SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat(pattern1);
                 dateFormat = simpleDateFormat1.format(date2);
-                DBManager.modifyStudent(id, modifiedLastName, modifiedFirstName, modifiedGroup, modifiedDate);
+                DBManager.modifyStudent(id, lastname, name, id_group, date);
                 resp.sendRedirect("/students");
             } else {
-                DBManager.modifyStudent(id, modifiedLastName, modifiedFirstName, modifiedGroup, modifiedDate);
+                DBManager.modifyStudent(id, lastname, name, id_group, date);
                 resp.sendRedirect("/students");
             }
         }

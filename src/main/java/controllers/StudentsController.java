@@ -20,15 +20,5 @@ public class StudentsController extends HttpServlet {
         req.setAttribute("allStudents", students); // allStudents - название атрибута пойдет в jsp страницу в <c:forEach items="${allStudents}" var="stud">
         req.getRequestDispatcher("WEB-INF/jsp/students.jsp").forward(req, resp);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String ids = req.getParameter("idStudent"); //s - имя hidden
-        String[] idsMassiv = ids.split(",");
-        for (String id : idsMassiv) {
-            DBManager.deleteStudents(id);
-        }
-        resp.sendRedirect("/students");
-    }
 }
 

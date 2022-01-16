@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 @Data
@@ -12,6 +13,7 @@ import java.util.Objects;
 public class Group {
     private int id;
     private String name;
+    private ArrayList<Student> students = new ArrayList<Student>();
 
 
     @Override
@@ -19,6 +21,7 @@ public class Group {
         return "Group{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", students=" + students +
                 '}';
     }
 
@@ -27,11 +30,11 @@ public class Group {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Group group = (Group) o;
-        return id == group.id && Objects.equals(name, group.name);
+        return id == group.id && Objects.equals(name, group.name) && Objects.equals(students, group.students);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, students);
     }
 }

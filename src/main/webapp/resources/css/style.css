@@ -1,95 +1,181 @@
-html {
-    background-color: aliceblue;
+/*Обнуление*/
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+*,*:before,*:after{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+/*--------------------*/
+body {
+    background-color: #E7E7E7FF;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    line-height: normal;
+    font-family: "Kalam", cursive;
+    font-weight: 400;
+    overflow-y: scroll;
 }
-a {
-    margin: 10px 40px;
+.block{
+}
+/* flex-контейнер */
+.block__row{
+    border: 2px solid #7b7b7c;
+    display:flex;
+    flex-wrap: wrap;
+    position: -ms-device-fixed;
+}
+/* flex-элемент */
+.block__element{
+    border: 2px solid #7b7b7c;
+    flex: 1 0 33.333%;
+    text-align:center;
+    flex-wrap: wrap;
+}
+/* flex-элемент №1 */
+.block__element_1{
+    box-shadow: 0 0 10px 10px #a9a9a8;
+}
+/* flex-элемент №2 */
+.block__element_2{
+    box-shadow: 0 0 10px 10px #a9a9a8;
+}
+/* flex-элемент №3 */
+.block__element_3{
+    box-shadow: 0 0 10px 10px #a9a9a8;
 }
 
-h1,
-h3,
-h5 {
+.block__content{
+    background-color: white;
+    min-height: 20px;
+    text-align: center;
+    /* плюс прочие стили для текста, отступы */
+}
+.block__left {
+    width:20%; /*Задаем ширину в процентах чтобы сделать ее резиновой*/
+    height:100px; /* Высота блока */
+    position: -ms-device-fixed;
+    padding: 2px 20px;
+}
+.block__center {
+    width:60%;
+    height: max-content;
+    position: -ms-device-fixed;
     text-align: center;
 }
-
-/*.btn-primary1 {*/
-/*    color: #000000;*/
-/*    background-color: rgb(220, 220, 220);*/
-/*    border-color: rgb(72, 72, 72);;*/
-/*}*/
-
-/*.active1 {*/
-/*    color: #000000;*/
-/*    background-color: rgb(220, 220, 220);*/
-/*    border-color: rgb(72, 72, 72);;*/
-/*}*/
-
-/*.input-group1 {*/
-/*    position: relative;*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    align-items: stretch;*/
-/*    width: 100%;*/
-/*}*/
-
-.multiple {
-    position: relative;
-    height: 200px;
+.block__right {
+    width:20%;
+    height: max-content;
+    position: -ms-device-fixed;
+    padding: 10px 10px 0px 20px;
+}
+.container {
+    max-width:60%;
+    margin:0 auto;
+    padding: 0px;
+    overflow: hidden;
+    position: -ms-device-fixed;
 }
 
-                      /*TD {*/
-                      /*    vertical-align: top; !* Выравнивание по верхнему краю ячейки *!*/
-                      /*}*/
-/*html, body {margin:0;padding:0;}*/
-/*.main {*/
-/*    margin:0 auto; !* Центрируем блоки *!*/
-/*    width:100%; !* Задаем ширину 100%, чтобы сделать ее резиновой *!*/
-/*    max-width:700px; !* Устанавливаем максимальную ширину *!*/
-/*}*/
+div.inline {font-size:0;} /* Ставим родителю значение 0, чтобы убрать отступы у блоков*/
+
 .inline div {
     display:inline-block; /* Делаем блоки по горизонтали */
     display: -moz-inline-stack; /* Для FireFox 2, тот же самый, что и inline-block */
     vertical-align:top; /* Выравниваем их сверху */
     font-size:16px; /* Ставим дочкам размер шрифта, иначе примет значение родителя */
-    /* Для IE 6 и IE 7, чтобы блоки были по горизонтали
-    zoom: 1;
-    *display: inline;
-    */
 }
-div.inline {font-size:0;} /* Ставим родителю значение 0, чтобы убрать отступы у блоков*/
-.left-block {
-    width:25%; /*Задаем ширину в процентах чтобы сделать ее резиновой*/
-    height:300px; /* Высота блока */
-    position: -ms-device-fixed;
+
+.multiple {
+    position: relative;
+    height: 200px;
 }
-.content {
-    width:50%;
-    height:300px;
-    position: -ms-device-fixed;
-}
-.right-block {
-    width:25%;
-    height:300px;
+.title_all_pages {
+    margin-top: 0%;
+    border: 2px solid #7b7b7c; /* Толщина рамки в пикселях, тип границы (в данном случае сплошная линия) и цвет линии */
+    background-color: white;
+    box-shadow: 0 0 6px 5px #a9a9a8;
+    font-weight: 150;
+    font-size: 150%;
+    display: inline-block;
+    width:100%;
+    height: max-content;
     position: -ms-device-fixed;
 }
 
-TABLE {
-    width: 300px;
+
+
+
+/*.col {*/
+/*    margin: 10px 40px;*/
+/*}*/
+
+
+
+FORM {
+    padding: 3px;
+    background-color: #E7E7E7FF;
+
+}
+
+/*!*.student_list_table {*!*/
+/*!*    max-width: 1500px;*!*/
+/*!*    border: 1px solid #7b7b7c; !* Рамка вокруг таблицы *!*!*/
+/*!*    border-collapse: collapse; !* Убираем двойные линии между ячейками *!*!*/
+/*!*    text-align: left;*!*/
+/*!*}*!*/
+table {
+    width: max-content;
     border: 1px solid #7b7b7c; /* Рамка вокруг таблицы */
     border-collapse: collapse; /* Убираем двойные линии между ячейками */
     text-align: left;
+    /*margin-right: 25%;*/
+    /*margin-left: 25%;*/
+    /*width: 50%;*/
+    height:max-content;
+    position: center;
 }
-TD, TH {
-    padding: 3px; /* Поля вокруг содержимого ячейки */
+
+TD {
+    background-color: #E7E7E7FF;
     border: 1px solid #7b7b7c;
+    padding: 3px; /* Поля вокруг содержимого ячейки */
     height: 50px;
     vertical-align: top;
 }
 
 TH {
-    background: #B9B6B6FC; /* Цвет фона */
+    background-color: #BBB2B2BB;
+    border: 1px solid #7b7b7c;
+    padding: 3px; /* Поля вокруг содержимого ячейки */
+    height: 50px;
+    vertical-align: top;
 }
-

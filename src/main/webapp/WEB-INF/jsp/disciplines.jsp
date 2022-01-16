@@ -11,18 +11,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../resources/css/style.css?v=12">
+    <link rel="stylesheet" href="../../resources/css/font.css?v=12">
     <script type="text/javascript" src="../../resources/js/function.js?v=12" charset="UTF-8"></script>
     <title>Disciplines</title>
 </head>
 <body>
+<c:import url="common/header.jsp" />
 <div class="main inline">
-    <div class="left-block">
-        <a class="nav-link active home" aria-current="page" href="../index.jsp">На главную</a>
-    </div>
     <div class="content">
-        <h1>Система управления студентами и их успеваемостью</h1>
+        <c:if test="${role == 1}">
+            <form action="/discipline-create" method="get">
+                <input type="submit" value="Создать дисциплину">
+            </form>
+            <br>
+            <br>
+            <input type="submit" onclick="modifyDiscipline()" value="Изменить выбранную дисциплину">
+            <br>
+            <br>
+            <input type="submit" onclick="deleteDisciplines()" value="Удалить выбранные дисциплины">
+        <form id="formModify" action="/discipline-modify" method="get">
+            <input type="hidden" id="hiddenModify" name="hiddenModify">
+        </form>
+        <form id="formDelete" action="/disciplines-delete" method="post">
+            <input type="hidden" id="hiddenDelete" name="hiddenDelete">
+        </form>
+        </c:if>
+      <div>
         <h4>Список дисциплин</h4>
-        <div class="col-md-4">
             <table>
                 <tr>
                     <th></th>
@@ -35,39 +50,8 @@
                         <td>${disc.discipline}</td>
                     </tr>
                 </c:forEach>
-            </table>
+            </table
         </div>
-        <div class="col-md-4">
-            <table>
-                <c:if test="${role == 1}">
-                    <form action="/discipline-create" method="get">
-                        <input type="submit" value="Создать дисциплину">
-                    </form>
-                    <br>
-                    <br>
-                    <input type="submit" onclick="modifyDiscipline()" value="Изменить выбранную дисциплину">
-                    <br>
-                    <br>
-                    <input type="submit" onclick="deleteDisciplines()" value="Удалить выбранные дисциплины">
-                </c:if>
-                <form id="formModify" action="/discipline-modify" method="get">
-                    <input type="hidden" id="hiddenModify" name="hiddenModify">
-                </form>
-                <form id="formDelete" action="/disciplines-delete" method="post">
-                    <input type="hidden" id="hiddenDelete" name="hiddenDelete">
-                </form>
-            </table>
-        </div>
-    </div>
-    <div class="right-block">
-        <c:choose>
-            <c:when test="${role ne null}">
-                <a href="/logout">Logout</a>
-            </c:when>
-            <c:otherwise>
-                <a href="/login">Login</a>
-            </c:otherwise>
-        </c:choose>
     </div>
 </div>
 

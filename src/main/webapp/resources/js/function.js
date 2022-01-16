@@ -60,19 +60,19 @@ function deleteTerm() {
 }
 
 function deleteStudents() {
-    var items = $("input[type=checkbox]:checked");
-    if (items.length == 0) {
-        alert("Пожалуйста, выберите хотя бы одного студента!");
+    var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
+    if (checkedBoxes.length == 0) {
+        alert("Пожалуйста, выберите хотя бы одну запись студента для удаления")
         return;
     }
-
-    var idStudentSelected = "";
-    for (var i = 0; i < items.length; ++i) {
-        idStudentSelected = idStudentSelected + $(items[i]).attr("value") + ",";
+    var studIds = ""; // 1-3-7-
+    for (var i = 0; i < checkedBoxes.length; i++) {
+        studIds = studIds + checkedBoxes[i].getAttribute("value") + "-"
     }
-
-    $("#idStudentDisc").val(idStudentSelected);
-    $('#delete-students-form').submit();
+    var hidden = document.getElementById("hiddenDeleteSt")
+    hidden.setAttribute("value", studIds);
+    var form = document.getElementById("formDelete");
+    form.submit();
 }
 
 function modifyStudent() {

@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +14,10 @@ public class Student {
     private String lastname;
     private String name;
     private Integer id_group;
-    private Group group;
     private Date date;
     private int status = 1;
+    private boolean selected = false;
+
 }
+
+
