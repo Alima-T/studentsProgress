@@ -23,33 +23,29 @@
 </head>
 <body>
 <c:import url="common/header.jsp"/>
-<div class="content">
-    <h3>Для создания новой записи студента введите данные и нажмите на кнопку "Создать"</h3>
-    <%-- оборачиваем в form, иначе не работают кнопки.
-    action передает данные на контроллер по urlPatterns = "/student-create"--%>
-    <form action="/student-create" method="post">
-        <label>Фамилия</label>
-        <input type="text" lastname="createStudLastname" maxlength="50" size="35" class="text"
-               value="${student.lastname}">
-
-        <label>Имя</label>
-        <input type="text" name="createStudName" maxlength="50" size="35" class="text" value="${student.name}">
-
-        <label>Группа</label>
-        <input type="text" group="createStudGroup" maxlength="5" size="5" class="text" value="${student.id_group}">
-
-        <label>Дата поступления</label>
-        <input type="text" id="datepicker" name="date" maxlength="10" size="10" class="text" value="${student.date}">
-
-        <label>Статус</label>
-        <input type="text" name="createStatus" maxlength="5" size="5" class="text" value="${student.status}">
-
-        <input type="submit" value="Создать">
-    </form>
-    <c:if test="${message eq 'error'}">
-    <h5>Поле не должно быть пустым!</h5>
-    </c:if>
+<div class="main inline">
+    <div class="block__left">
+        <div class="block__row">
+            <div class="block__element_hidden"><a href="../index.jsp">На главную</a></div>
+            <div class="block__element_hidden"><a href="/students">Назад</a></div>
+        </div>
+    </div>
+    <div class="center-block">
+        <h3>Для создания новой записи студента введите данные и нажмите на кнопку "Создать"</h3>
+        <%-- оборачиваем в form, иначе не работают кнопки.
+        action передает данные на контроллер по urlPatterns = "/student-create"--%>
+        <form action="/student-create" method="post">
+            <input type="text" placeholder="Фамилия" lastname="createStudLastname" maxlength="50" size="35" class="text"value="${student.lastname}">
+            <input type="text" placeholder="Имя" name="createStudName" maxlength="50" size="35" class="text" value="${student.name}">
+            <input type="text" placeholder="Группа" group="createStudGroup" maxlength="5" size="5" class="text" value="${student.id_group}">
+            <input type="text" placeholder="Дата поступления" id="datepicker" name="date" maxlength="10" size="10" class="text"value="${student.date}">
+            <input type="text" placeholder="Статус" name="createStatus" maxlength="5" size="5" class="text" value="${student.status}">
+            <input type="submit" value="Создать">
+        </form>
+        <c:if test="${message eq 'error'}">
+            <h5>Поле не должно быть пустым!</h5>
+        </c:if>
+    </div>
 </div>
-
 </body>
 </html>

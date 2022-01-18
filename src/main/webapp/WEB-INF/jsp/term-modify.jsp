@@ -16,8 +16,14 @@
 </head>
 <body>
 <c:import url="common/header.jsp"/>
-<div class="content">
-    <div class="col-md-4">
+<div class="main inline">
+    <div class="block__left">
+        <div class="block__row">
+            <div class="block__element_hidden"><a href="../index.jsp">На главную</a></div>
+            <div class="block__element_hidden"><a href="/terms">Назад</a></div>
+        </div>
+    </div>
+    <div class="center-block">
         <h3>Для модификации семестра отредактируйте данные и нажмите на кнопку "Применить" </h3>
     </div>
     <section>

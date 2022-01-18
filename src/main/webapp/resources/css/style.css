@@ -1,19 +1,24 @@
 /*Обнуление*/
-*{
+* {
     padding: 0;
     margin: 0;
     border: 0;
 }
-*,*:before,*:after{
+*, *:before, *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-:focus,:active{outline: none;}
-a:focus,a:active{outline: none;}
-nav,footer,header,aside{display: block;}
-
-html,body{
+:focus, :active {
+    outline: none;
+}
+a:focus, a:active {
+    outline: none;
+}
+nav, footer, header, aside {
+    display: block;
+}
+html, body {
     height: 100%;
     width: 100%;
     font-size: 100%;
@@ -23,15 +28,35 @@ html,body{
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
-input,button,textarea{font-family:inherit;}
-input::-ms-clear{display: none;}
-button{cursor: pointer;}
-button::-moz-focus-inner {padding:0;border:0;}
-a, a:visited{text-decoration: none;}
-a:hover{text-decoration: none;}
-ul li{list-style: none;}
-img{vertical-align: top;}
-h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+input, button, textarea {
+    font-family: inherit;
+}
+/*input::-ms-clear {*/
+/*    display: none;*/
+/*}*/
+button {
+    cursor: pointer;
+}
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+a {
+    -moz-text-decoration-line: line-through;
+}
+a:hover {
+    text-decoration-line: blink;
+}
+ul li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: 400;
+}
 /*--------------------*/
 body {
     background-color: #E7E7E7FF;
@@ -44,74 +69,135 @@ body {
     font-weight: 400;
     overflow-y: scroll;
 }
-.block{
-}
-/* flex-контейнер */
-.block__row{
-    border: 2px solid #7b7b7c;
-    display:flex;
-    flex-wrap: wrap;
+.block {
     position: -ms-device-fixed;
 }
-/* flex-элемент */
-.block__element{
-    border: 2px solid #7b7b7c;
-    flex: 1 0 33.333%;
-    text-align:center;
-    flex-wrap: wrap;
-}
-/* flex-элемент №1 */
-.block__element_1{
-    box-shadow: 0 0 10px 10px #a9a9a8;
-}
-/* flex-элемент №2 */
-.block__element_2{
-    box-shadow: 0 0 10px 10px #a9a9a8;
-}
-/* flex-элемент №3 */
-.block__element_3{
-    box-shadow: 0 0 10px 10px #a9a9a8;
-}
-
-.block__content{
+.block__content {
     background-color: white;
     min-height: 20px;
     text-align: center;
-    /* плюс прочие стили для текста, отступы */
 }
 .block__left {
-    width:20%; /*Задаем ширину в процентах чтобы сделать ее резиновой*/
-    height:100px; /* Высота блока */
+    width: 20%; /*Задаем ширину в процентах чтобы сделать ее резиновой*/
+    /*min-height: 50px; !* Высота блока *!*/
+    padding-left: 50px;
+    padding-bottom: 0;
     position: -ms-device-fixed;
-    padding: 2px 20px;
+
 }
 .block__center {
-    width:60%;
-    height: max-content;
+    display: inline-block;
+    width: 60%;
+    /*min-height: 50px;*/
     position: -ms-device-fixed;
-    text-align: center;
+    padding-bottom: 0;
+    /*text-align: center;*/
 }
 .block__right {
-    width:20%;
-    height: max-content;
+    width: 20%;
+    /*height: max-content;*/
     position: -ms-device-fixed;
-    padding: 10px 10px 0px 20px;
+    padding-left: 20px;
+    padding-bottom: 0;
 }
+/* flex-контейнер */
+.block__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: -ms-device-fixed;
+    padding: 2px;
+}
+.block__row__column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: -ms-device-fixed;
+    padding: 2px;
+}
+/* flex-элемент */
+.block__title__3 {
+    border: 2px solid #7b7b7c;
+    flex: 1 0 33.333%;
+    text-align: center;
+}
+.block__element_1 {
+    box-shadow: 3px 3px 10px 10px #B9B6B6BA;
+    border: 2px solid #7b7b7c;
+}
+.block__form3 {
+    padding-top: 2px;
+    border: 1px solid #7b7b7c;
+    flex: 1 1 40%;
+    text-align: center;
+    min-height: 35px;
+    border-radius: 3px;
+}
+.block__form4 {
+    padding-top: 2px;
+    border: 1px solid #7b7b7c;
+    flex: 1 1 40%;
+    text-align: center;
+    min-height: 35px;
+    border-radius: 3px;
+}
+.block__element_2 {
+    /*box-shadow: inset 0 0 5px 0 #918282;*/
+    border: 2px solid #7b7b7c;
+    box-shadow: 3px 3px 8px 8px #B9B6B6BA;
+    margin: 5px 5px 5px 5px;
+    text-align: center;
+    border-radius: 3px;
+}
+.block__element_hidden{
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+    /*.block__content2{*/
+/*    background-color: #BBB2B2BB;*/
+/*    min-height: 20px;*/
+/*    text-align: center;*/
+/*}*/
 .container {
-    max-width:60%;
-    margin:0 auto;
+    max-width: 60%;
+    margin: 0 auto;
     padding: 0px;
     overflow: hidden;
     position: -ms-device-fixed;
 }
-
-div.inline {font-size:0;} /* Ставим родителю значение 0, чтобы убрать отступы у блоков*/
-
+div.inline {
+    font-size: 0;
+}
+/* Ставим родителю значение 0, чтобы убрать отступы у блоков*/
 .inline div {
-    display:inline-block; /* Делаем блоки по горизонтали */
+    display: inline-block; /* Делаем блоки по горизонтали */
     display: -moz-inline-stack; /* Для FireFox 2, тот же самый, что и inline-block */
-    vertical-align:top; /* Выравниваем их сверху */
-    font-size:16px; /* Ставим дочкам размер шрифта, иначе примет значение родителя */
+    vertical-align: top; /* Выравниваем их сверху */
+    font-size: 16px; /* Ставим дочкам размер шрифта, иначе примет значение родителя */
+}
+input {
+    width: max-content;
+    font-size: 13px;
+    /*padding: 6px 0 4px 10px;*/
+    border: 2px solid #7b7b7c;
+    /*background-color: #B9B6B6BA;*/
+    border-radius: 3px;
+    padding-bottom: 5px\0;
+}
+input.inblock{
+    width: 100%;
+    font-size: 13px;
+    /*padding: 6px 0 4px 10px;*/
+    border: none;
+    background: none;
+    border-radius: 3px;
+    padding-bottom: 5px\0;
+}
+label {
+    float: left;
+    margin-right: 20px;
 }
 
 .multiple {
@@ -120,62 +206,65 @@ div.inline {font-size:0;} /* Ставим родителю значение 0, �
 }
 .title_all_pages {
     margin-top: 0%;
+    margin-bottom: 30px;
     border: 2px solid #7b7b7c; /* Толщина рамки в пикселях, тип границы (в данном случае сплошная линия) и цвет линии */
+    border-radius: 3px;
     background-color: white;
-    box-shadow: 0 0 6px 5px #a9a9a8;
+    box-shadow: 0 0 6px 5px #B9B6B6BA;
     font-weight: 150;
     font-size: 150%;
     display: inline-block;
-    width:100%;
+    width: 100%;
     height: max-content;
     position: -ms-device-fixed;
+    text-align: center;
 }
-
-
-
-
 /*.col {*/
 /*    margin: 10px 40px;*/
 /*}*/
-
-
-
-FORM {
+form {
     padding: 3px;
-    background-color: #E7E7E7FF;
-
+    width: 100%;
 }
+/*table {*/
+/*    min-width: 100%;*/
+/*    border: 1px solid #7b7b7c; !* Рамка вокруг таблицы *!*/
+/*    border-collapse: collapse; !* Убираем двойные линии между ячейками *!*/
+/*    text-align: left;*/
+/*    !*margin-right: 25%;*!*/
+/*    !*margin-left: 25%;*!*/
+/*    !*width: 50%;*!*/
+/*    height: max-content;*/
+/*    position: -ms-device-fixed;*/
+/*}*/
 
-/*!*.student_list_table {*!*/
-/*!*    max-width: 1500px;*!*/
-/*!*    border: 1px solid #7b7b7c; !* Рамка вокруг таблицы *!*!*/
-/*!*    border-collapse: collapse; !* Убираем двойные линии между ячейками *!*!*/
-/*!*    text-align: left;*!*/
-/*!*}*!*/
-table {
-    width: max-content;
+.table-student-list {
+    min-width: 100%;
     border: 1px solid #7b7b7c; /* Рамка вокруг таблицы */
     border-collapse: collapse; /* Убираем двойные линии между ячейками */
     text-align: left;
-    /*margin-right: 25%;*/
-    /*margin-left: 25%;*/
-    /*width: 50%;*/
-    height:max-content;
-    position: center;
+    position: -ms-device-fixed;
+}
+.table__left {
+    float: left;
+    width: 50%;
+    border: 1px solid #7b7b7c; /* Рамка вокруг таблицы */
+    border-collapse: collapse; /* Убираем двойные линии между ячейками */
+    text-align: left;
+    position: -ms-device-fixed;
 }
 
-TD {
+td {
     background-color: #E7E7E7FF;
     border: 1px solid #7b7b7c;
     padding: 3px; /* Поля вокруг содержимого ячейки */
     height: 50px;
-    vertical-align: top;
+    vertical-align: bottom;
 }
-
-TH {
-    background-color: #BBB2B2BB;
+th {
+    background-color: #B9B6B6BA;
     border: 1px solid #7b7b7c;
     padding: 3px; /* Поля вокруг содержимого ячейки */
     height: 50px;
-    vertical-align: top;
+    vertical-align: bottom;
 }

@@ -18,24 +18,25 @@
 <body>
 <c:import url="common/header.jsp"/>
 <div class="main inline">
-    <div class="left-block">
-        <a href="../index.jsp">На главную</a>
-        <a href="/disciplines">Назад</a>
+    <div class="block__left">
+        <div class="block__row">
+            <div class="block__element_hidden"><a href="../index.jsp">На главную</a></div>
+            <div class="block__element_hidden"><a href="/disciplines">Назад</a></div>
+        </div>
     </div>
     <div class="center-block">
         <h4>Для внесения изменения в дисциплину заполните все поля и нажмите на кнопку "Применить"</h4>
+        <br>
+        <label>Название</label>
+        <form action="/discipline-modify" method="post">
+            <input name="id" type="hidden" value="${disc.id}">
+            <input name="disc" type="text" value="${disc.discipline}">
+            <input type="submit" value="Применить">
+        </form>
+        <c:if test="${message eq 'error'}">
+            <h5>Поле не должно быть пустым!</h5>
+        </c:if>
     </div>
-</div>
-<div class="content">
-    <label>Название</label>
-    <form action="/discipline-modify" method="post">
-        <input name="id" type="hidden" value="${disc.id}">
-        <input name="disc" type="text" value="${disc.discipline}">
-        <input type="submit" value="Применить">
-    </form>
-    <c:if test="${message eq 'error'}">
-        <h5>Поле не должно быть пустым!</h5>
-    </c:if>
 </div>
 </body>
 </html>

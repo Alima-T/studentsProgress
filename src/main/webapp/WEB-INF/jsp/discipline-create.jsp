@@ -18,12 +18,15 @@
 <body>
 <c:import url="common/header.jsp"/>
 <div class="main inline">
-    <div class="left-block">
-        <a href="../index.jsp">На главную</a>
-        <a href="/disciplines">Назад</a>
+    <div class="block__left">
+        <div class="block__row">
+            <div class="block__element_hidden"><a href="../index.jsp">На главную</a></div>
+            <div class="block__element_hidden"><a href="/disciplines">Назад</a></div>
+        </div>
     </div>
     <div class="center-block">
         <h4>Для создания новой дисциплины, заполните все поля и нажмите кнопку "Создать"</h4>
+        <br>
         <label>Название</label>
         <form action="/discipline-create" method="post">
             <input type="text" name="newDisc">
@@ -33,6 +36,25 @@
             <h5>Поле не должно быть пустым!</h5>
         </c:if>
     </div>
+    <div class="block__right"></div>
 </div>
+<%--<c:import url="common/header.jsp"/>--%>
+<%--<div class="main inline">--%>
+<%--    <div class="left-block">--%>
+<%--        <a href="../index.jsp">На главную</a>--%>
+<%--        <a href="/disciplines">Назад</a>--%>
+<%--    </div>--%>
+<%--    <div class="center-block">--%>
+<%--        <h4>Для создания новой дисциплины, заполните все поля и нажмите кнопку "Создать"</h4>--%>
+<%--        <label>Название</label>--%>
+<%--        <form action="/discipline-create" method="post">--%>
+<%--            <input type="text" name="newDisc">--%>
+<%--            <input type="submit" value="Cоздать">--%>
+<%--        </form>--%>
+<%--        <c:if test="${message eq 'error'}">--%>
+<%--            <h5>Поле не должно быть пустым!</h5>--%>
+<%--        </c:if>--%>
+<%--    </div>--%>
+<%--</div>--%>
 </body>
 </html>

@@ -27,8 +27,14 @@
 
 <body>
 <c:import url="common/header.jsp"/>
-<div class="content">
-    <div class="col-md-4">
+<div class="main inline">
+    <div class="block__left">
+        <div class="block__row">
+            <div class="block__element_hidden"><a href="../index.jsp">На главную</a></div>
+            <div class="block__element_hidden"><a href="/students">Назад</a></div>
+        </div>
+    </div>
+    <div class="center-block">
         <h3>Для внесения изменения в запись студента заполните все поля и нажмите на кнопку "Применить"</h3>
         <label>Название</label>
         <form action="/student-modify" method="post">

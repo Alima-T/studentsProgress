@@ -13,16 +13,21 @@
 
 <body>
 <c:import url="common/header.jsp"/>
-<div class="content">
-    <div class="col-md-4">
+<div class="main inline">
+    <div class="block__left">
+        <div class="block__row">
+            <div class="block__element_hidden"><a href="../index.jsp">На главную</a></div>
+            <div class="block__element_hidden"><a href="/terms">Назад</a></div>
+        </div>
+    </div>
+    <div class="block__center">
         <h3>Для создания семестра заполните следующие данные и нажмите кнопку "Создать"</h3>
-        <table class="under_main_table" style="font-family: cursive;">
+        <table>
             <tr>
                 <td width="210px">Длительность (в неделях)</td>
                 <td><input type="text" name="duration" class="text"
                            id="text" placeholder="24"></td>
             </tr>
-
             <tr>
                 <td style="padding-top: 30px" valign="top">Дисциплины в семестре</td>
                 <td style="padding-top: 30px">
@@ -30,12 +35,8 @@
                         <tr>
                             <td style="padding: 0"><select multiple size="8"
                                                            id="multi_list" multiple="multiple">
-
-                                <option>---</option>
-
                             </select></td>
                         </tr>
-
                         <tr>
                             <td style="padding-top: 20px">
                                 <form action="/term" method="post">

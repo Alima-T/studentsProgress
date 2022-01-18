@@ -38,13 +38,13 @@
 <div class="container">
     <div class="block">
         <div class="block__row"><!--  flex-container  -->
-            <div class="block__element block__element_1"> <!--  flex-element  -->
+            <div class="block__title__3 block__element_1"> <!--  flex-element  -->
                 <div class="block__content"><a href="/students">Студенты</a></div><!--  content  -->
             </div>
-            <div class="block__element block__element_2">
+            <div class="block__title__3 block__element_1">
                 <div class="block__content"><a href="/disciplines">Дисциплины</a></div>
             </div>
-            <div class="block__element block__element_3">
+            <div class="block__title__3 block__element_1">
                 <div class="block__content"><a href="/terms">Семестры</a></div>
             </div>
         </div>

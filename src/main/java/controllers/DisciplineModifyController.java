@@ -32,6 +32,7 @@ public class DisciplineModifyController extends HttpServlet {
             req.getRequestDispatcher("WEB-INF/jsp/discipline-modify.jsp").forward(req, resp);
             return;
         }
+
         DBManager.modifyDiscipline(id, disc);
         resp.sendRedirect("/disciplines");
     }
