@@ -17,7 +17,7 @@
 <c:import url="common/header.jsp"/>
 <div class="main inline">
     <div class="block__left">
-        <a href="../index.jsp">На главную</a>
+        <a href="/home">На главную</a>
     </div>
     <div class="block__center"></div>
     <div class="block__right"></div>

@@ -30,7 +30,7 @@
 <div class="main inline">
     <div class="block__left">
         <div class="block__row">
-            <div class="block__element_hidden"><a href="../index.jsp">На главную</a></div>
+            <div class="block__element_hidden"><a href="/home">На главную</a></div>
             <div class="block__element_hidden"><a href="/students">Назад</a></div>
         </div>
     </div>

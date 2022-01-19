@@ -20,11 +20,11 @@
 <div class="main inline">
     <div class="block__left">
         <div class="block__row">
-            <div class="block__element_hidden"><a href="../index.jsp">На главную</a></div>
+            <div class="block__element_hidden"><a href="/home">На главную</a></div>
             <div class="block__element_hidden"><a href="/disciplines">Назад</a></div>
         </div>
     </div>
-    <div class="center-block">
+    <div class="block__center">
         <h4>Для внесения изменения в дисциплину заполните все поля и нажмите на кнопку "Применить"</h4>
         <br>
         <label>Название</label>

@@ -18,7 +18,7 @@
 <c:import url="common/header.jsp"/>
 <div class="main inline">
     <div class="block__left">
-        <a href="../index.jsp">На главную</a>
+        <a href="/home">На главную</a> <%-- or "../index.jsp"--%>
     </div>
     <div class="block__center">
         <h4>Список дисциплин</h4>
@@ -41,7 +41,7 @@
                 </tr>
             </c:forEach>
         </table>
-<%--        <c:if test="${role == 1}">--%>
+        <%--        <c:if test="${role == 1}">--%>
         <div class="block__row__column">
             <div class="block__form3 block__element_2">
                 <form action="/discipline-create" method="get">
@@ -49,9 +49,7 @@
                 </form>
             </div>
             <div class="block__form3 block__element_2">
-                <form action="/discipline-modify" method="get">
-                    <input class="inblock" type="submit" onclick="modifyDiscipline()" value="Изменить выбранную дисциплину">
-                </form>
+                <input class="inblock" type="submit" onclick="modifyDiscipline()" value="Изменить выбранную дисциплину">
                 <form id="formModify" action="/discipline-modify" method="get">
                     <input type="hidden" id="hiddenModify" name="hiddenModify">
                 </form>
@@ -62,16 +60,14 @@
                     <input type="hidden" id="hiddenDelete" name="hiddenDelete">
                 </form>
             </div>
-<%--            </c:if>--%>
         </div>
     </div>
 </div>
 </div>
-
-
-<%--<div class="container">--%>
-<%--    <div class="block__center left">--%>
-<%--        <h4>Список дисциплин</h4>--%>
+<%--<div class="content">--%>
+<%--    <h1>Система управления студентами и их успеваемостью</h1>--%>
+<%--    <h4>Список дисциплин</h4>--%>
+<%--    <div class="col-md-4">--%>
 <%--        <table>--%>
 <%--            <tr>--%>
 <%--                <th></th>--%>
@@ -84,54 +80,31 @@
 <%--                    <td>${disc.discipline}</td>--%>
 <%--                </tr>--%>
 <%--            </c:forEach>--%>
-<%--        </table--%>
+<%--        </table>--%>
 <%--    </div>--%>
-<%--    <div class="block__center right">--%>
-<%--        <div class="container">--%>
-<%--        <div class="block__row__column">--%>
-<%--            <div class="block__form3 block__element_2">--%>
+<%--    <div class="col-md-4">--%>
+<%--        <table>--%>
+<%--            <c:if test="${role == 1}">--%>
 <%--                <form action="/discipline-create" method="get">--%>
 <%--                    <input type="submit" value="Создать дисциплину">--%>
 <%--                </form>--%>
-<%--            </div>--%>
-<%--            <c:if test="${role == 1}">--%>
-<%--                <div class="block__form3 block__element_2">--%>
-<%--                    <form action="/discipline-modify" method="get">--%>
-<%--                        <input type="submit" onclick="modifyDiscipline()" value="Изменить выбранную дисциплину">--%>
-<%--                    </form>--%>
-<%--                    <form id="formModify" action="/discipline-modify" method="get">--%>
-<%--                        <input type="hidden" id="hiddenModify" name="hiddenModify">--%>
-<%--                    </form>--%>
-<%--                </div>--%>
-<%--                <div class="block__form3 block__element_2">--%>
-<%--                    <input type="submit" onclick="deleteDisciplines()" value="Удалить выбранные дисциплины">--%>
-<%--                    <form id="formDelete" action="/disciplines-delete" method="post">--%>
-<%--                        <input type="hidden" id="hiddenDelete" name="hiddenDelete">--%>
-<%--                    </form>--%>
-<%--                </div>--%>
+<%--                <br>--%>
+<%--                <br>--%>
+<%--                <input type="submit" onclick="modifyDiscipline()" value="Изменить выбранную дисциплину">--%>
+<%--                <br>--%>
+<%--                <br>--%>
+<%--                <input type="submit" onclick="deleteDisciplines()" value="Удалить выбранные дисциплины">--%>
 <%--            </c:if>--%>
-<%--        </div>--%>
-<%--        </div>--%>
+<%--            <form id="formModify" action="/discipline-modify" method="get">--%>
+<%--                <input type="hidden" id="hiddenModify" name="hiddenModify">--%>
+<%--            </form>--%>
+<%--            <form id="formDelete" action="/disciplines-delete" method="post">--%>
+<%--                <input type="hidden" id="hiddenDelete" name="hiddenDelete">--%>
+<%--            </form>--%>
+<%--        </table>--%>
 <%--    </div>--%>
-<%--</div>--%>
+</div>
 
-
-<%--        <div class="content">--%>
-
-<%--            <h4>Список дисциплин</h4>--%>
-<%--            <table>--%>
-<%--                <tr>--%>
-<%--                    <th></th>--%>
-<%--                    <th>Название дисциплины</th>--%>
-<%--                </tr>--%>
-<%--                <c:forEach items="${namesOfDisciplines}"--%>
-<%--                           var="disc">&lt;%&ndash;namesOfDisciplines - copypass из req.setAttribute - DisciplinesController&ndash;%&gt;--%>
-<%--                    <tr>--%>
-<%--                        <td><input type="checkbox" value="${disc.id}"></td>--%>
-<%--                        <td>${disc.discipline}</td>--%>
-<%--                    </tr>--%>
-<%--                </c:forEach>--%>
-<%--            </table--%>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 function modifyDiscipline() {
     var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
     if (checkedBoxes.length == 0) {
-        alert("Пожалуйста, выберите одну дисциплину")
+        alert("Please choose one discipline")
         return;
     }
     if (checkedBoxes.length > 1) {

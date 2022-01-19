@@ -26,7 +26,7 @@
 <div class="main inline">
     <div class="block__left">
         <div class="block__row">
-            <div class="block__element_hidden"><a href="../index.jsp">На главную</a></div>
+            <div class="block__element_hidden"><a href="/home">На главную</a></div>
             <div class="block__element_hidden"><a href="/students">Назад</a></div>
         </div>
     </div>
@@ -35,11 +35,11 @@
         <%-- оборачиваем в form, иначе не работают кнопки.
         action передает данные на контроллер по urlPatterns = "/student-create"--%>
         <form action="/student-create" method="post">
-            <input type="text" placeholder="Фамилия" lastname="createStudLastname" maxlength="50" size="35" class="text"value="${student.lastname}">
-            <input type="text" placeholder="Имя" name="createStudName" maxlength="50" size="35" class="text" value="${student.name}">
-            <input type="text" placeholder="Группа" group="createStudGroup" maxlength="5" size="5" class="text" value="${student.id_group}">
-            <input type="text" placeholder="Дата поступления" id="datepicker" name="date" maxlength="10" size="10" class="text"value="${student.date}">
-            <input type="text" placeholder="Статус" name="createStatus" maxlength="5" size="5" class="text" value="${student.status}">
+            <input type="text" placeholder="Фамилия" lastname="createStudLastname" maxlength="50" size="35" class="text"value="${student.lastname}"><br><br>
+            <input type="text" placeholder="Имя" name="createStudName" maxlength="50" size="35" class="text" value="${student.name}"><br><br>
+            <input type="text" placeholder="Группа" group="createStudGroup" maxlength="5" size="5" class="text" value="${student.id_group}"><br><br>
+            <input type="text" placeholder="Дата поступления" id="datepicker" name="date" maxlength="10" size="10" class="text"value="${student.date}"><br><br>
+<%--            <input type="text" placeholder="Статус" name="createStatus" maxlength="5" size="5" class="text" value="${student.status}"><br><br>--%>
             <input type="submit" value="Создать">
         </form>
         <c:if test="${message eq 'error'}">
