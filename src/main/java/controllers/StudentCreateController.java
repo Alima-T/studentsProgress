@@ -26,10 +26,11 @@ public class StudentCreateController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String lastname = req.getParameter("lastname");
         String name = req.getParameter("name");
-        String group = req.getParameter("group_name");
+        String group = req.getParameter("group");
         Date date = Date.valueOf(req.getParameter("date"));
         int status = Integer.parseInt(req.getParameter("status"));
-
+        //INSERT INTO `students_19`.`student` (`lastname`, `name`, `id_group`, `date`, `status`) VALUES ('Степанов', 'Степан', '4', '2022-06-01', '1');
+        //UPDATE `students_19`.`student` SET `lastname` = 'Логинов', `name` = 'Эдуард', `id_group` = '4', `date` = '2021-09-01' WHERE (`id` = '9');
         if (lastname == null || name == null || group == null || date == null || status == '0' ||
                 lastname.equals("") || name.equals("") || group.equals("") || date.equals("")|| status==0){
             req.setAttribute("message", "error");

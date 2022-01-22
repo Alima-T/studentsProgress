@@ -38,14 +38,14 @@
         <h3>Для внесения изменения в запись студента заполните все поля и нажмите на кнопку "Применить"</h3>
         <label>Название</label>
         <form action="/student-modify" method="post">
-            <div CLASS="div-for-student-modifing">
+            <div>
                 <input type="hidden" name="id" value="${id}">
                 <div class="display-flex"><label>Фамилия</label>
                     <input type="text" name="modifiedLastname" value="${selectedStudent.lastname}"></div>
                 <div class="display-flex"><label>Имя</label>
                     <input type="text" name="modifiedName" value="${selectedStudent.name}"></div>
                 <div class="display-flex"><label>Группа</label>
-                    <input type="text" name="modifiedGroup" value="${selectedStudent.id_group}"></div>
+                    <input type="text" name="modifiedGroup" value="${selectedStudent.group}"></div>
                 <div class="display-flex"><label>Дата поступления</label>
                     <input name="modifiedDate" type="text" id="datepicker"
                            autocomplete="off" value="${selectedStudent.date}"></div>

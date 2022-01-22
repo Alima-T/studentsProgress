@@ -20,13 +20,13 @@ public class DBManager {
         ArrayList<Student> students = new ArrayList<Student>();
         try {
             String id;
-            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM `students_19`.`student` WHERE status = '1'");
+            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM  `students_19`.`student` where status= '1';");
             while (rs.next()) {
                 Student student = new Student();
                 student.setId(rs.getInt("id"));
                 student.setLastname(rs.getString("lastname"));
                 student.setName(rs.getString("name"));
-                student.setId_group(rs.getInt("id_group"));
+                student.setGroup(rs.getString("group"));
                 student.setDate(rs.getDate("date"));
                 students.add(student);
             }
@@ -44,8 +44,8 @@ public class DBManager {
             while (rs.next()) {
                 student.setId(rs.getInt("id"));
                 student.setLastname(rs.getString("lastname"));
+                student.setGroup(rs.getString("group"));
                 student.setName(rs.getString("name"));
-                student.setId_group(rs.getInt("id_group"));
                 student.setDate(rs.getDate("date"));
             }
         } catch (Exception e) {
@@ -54,10 +54,10 @@ public class DBManager {
         return student;
     }
 
-    public static void createNewStudent(String lastname, String name, String id_group, Date date, int status) {
+    public static void createNewStudent(String lastname, String name, String group, Date date, int status) {
         try {
-            Constants.DB.execute("INSERT INTO `students_19`.`student` ( `lastname`, `name`, `id_group`, `date`, `status`) " +
-                    "VALUES ('" + lastname + "', '" + name + "', '" + id_group + "', '" + date + "', '" + status + "');");
+            Constants.DB.execute("INSERT INTO `students_19`.`student` ( `lastname`, `name`, `group`, `date`) " +
+                    "VALUES ('" + lastname + "', '" + name + "', '" + group + "', '" + date + "');");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,12 +72,12 @@ public class DBManager {
         }
     }
 
-public static void modifyStudent(String id, String lastname, String name, String id_group, String date){
+public static void modifyStudent(String id, String lastname, String name, String group, String date){
         try {
             Constants.DB.execute("UPDATE `students_19'.`student` SET " +
                     "`lastname` = '" + lastname + "', " +
                     "`name` = '" + name + "', " +
-                    "`id_group` = '" + id_group + "', " +
+                    "`group` = '" + group + "', " +
                     "`date` = '" + date + "' " +
                     "WHERE (`id` = '" + id + "');");
         } catch (Exception e) {
@@ -87,12 +87,12 @@ public static void modifyStudent(String id, String lastname, String name, String
 
     public static Student getStudent(String id) {
         try {
-            ResultSet rs = Constants.DB.executeQuery("select  lastname, name, id_group, date from students_19.student where id =" + id + "");
+            ResultSet rs = Constants.DB.executeQuery("select  lastname, name, group, date from students_19.student where id =" + id + "");
             while (rs.next()) {
                 Student student = new Student();
                 student.setLastname(rs.getString("lastname"));
                 student.setName(rs.getString("name"));
-                student.setId_group(rs.getInt("id_group"));
+                student.setGroup(rs.getString("group"));
                 student.setDate(rs.getDate("date"));
                 return student;
             }
@@ -194,7 +194,7 @@ public static void modifyStudent(String id, String lastname, String name, String
             while (rs.next()) {
                 Term term = new Term();
                 term.setId(rs.getInt("id"));
-                term.setName("Семестр" + count); // в базе нет имени, поэтому прописываем код для н=генерации нового имени семестр1, 2, 3
+                term.setName("Семестр" + count); // в базе нет имени, поэтому прописываем код для генерации нового имени семестр1, 2, 3
                 count++;
                 term.setDuration(rs.getString("duration"));// устанавливаем длительность семестра в неделях
                 terms.add(term);
@@ -334,6 +334,8 @@ public static void modifyStudent(String id, String lastname, String name, String
             if (modifiedDisciplinesId != null) {
                 for (String newDisciplineId : modifiedDisciplinesId) {
                     Constants.DB.execute("INSERT INTO `students_19`.`term_discipline` (`id_term`, `id_discipline`) VALUES ('" + id + "', '" + newDisciplineId + "')");
+//                    INSERT INTO `students_19`.`term` (`id`, `duration`, `status`) VALUES ('4', '24 недели', '1');// creation
+//                    INSERT INTO `students_19`.`term_discipline` (`id_term`, `id_discipline`) VALUES ('4', '12');//creation
                 }
             }
             Constants.DB.execute("UPDATE `students_19`.`term` SET `duration` = '" + durationResult + "' WHERE (`id` = '" + id + "')");

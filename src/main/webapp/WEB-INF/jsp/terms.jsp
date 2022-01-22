@@ -31,7 +31,7 @@
             <div class="row">
                 <h4>Выбрать семестр</h4>
                 <form action="/terms" method="get">
-                    <select name="selected" class="form-select term" aria-label="Default select example">
+                    <select name="selected" class="form-select term" aria-label="Default select example" style="padding: 2px 150px 2px 5px">
                         <c:forEach items="${terms}" var="t">
                             <c:choose>
                                 <c:when test="${t.id == selectedTerm.id}">
@@ -48,11 +48,15 @@
                     </div>
                 </form>
             </div>
+            <br>
+            <br>
         </div>
+        <br>
         <br>
         <h4>Длительность семестра: 24 недели</h4>
         <br>
         <h4>Список дисциплин семестра </h4>
+        <br>
         <table class="table__left">
             <tr>
                 <th>Название дисциплины</th>

@@ -71,7 +71,7 @@
                 <td><input type="checkbox" value="${stud.id}"></td>
                 <td>${stud.lastname}</td>
                 <td>${stud.name}</td>
-                <td>${stud.id_group}</td>
+                <td>${stud.group}</td>
                 <td><fmt:formatDate value="${stud.date}" pattern="yyyy/MM/dd"></fmt:formatDate></td>
             </tr>
         </c:forEach>
