@@ -1,13 +1,6 @@
-A WEB application for automating the accounting of student progress 
-with authorization and access rights based on roles (student, teacher, admin), 
-developed using the MVC design pattern and the following technologies:
+CRM system for tracking student progress with authorization and access rights based on roles (student, teacher, administrator). 
+For full access, use the admin's username and password.
 
-- Java EE, Apache Maven
-- WAR. Tomcat web container. Servlets
-- Server-side technologies: HTTP
-- Client-side technologies: HTML5, CSS3, JavaScript (base), Bootstrap 
-- Database to store and retrieve information from (MySQL, queries, DB configuration in IntelliJ IDEA)
-- Cookies setting and configuring
-
- Development environment: IntelliJ IDEA
- 
+![Иллюстрация к проекту](https://github.com/AOkhapkina/studentsProgress/students_progress_app.jpg)
+![Иллюстрация к проекту](https://github.com/AOkhapkina/studentsProgress/students_progress_app1.jpg)
+![Иллюстрация к проекту](https://github.com/AOkhapkina/studentsProgress/students_progress_app2.jpg)
