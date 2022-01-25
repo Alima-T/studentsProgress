@@ -33,8 +33,7 @@
     </div>
     <div class="center-block">
         <h3>Для создания новой записи студента введите данные и нажмите на кнопку "Создать"</h3>
-        <%-- оборачиваем в form, иначе не работают кнопки.
-        action передает данные на контроллер по urlPatterns = "/student-create"--%>
+        <%-- оборачиваем в form, иначе не работают кнопки / action передает данные на контроллер по urlPatterns = "/student-create"--%>
         <form action="/student-create" method="post"><br><br>
             <input type="text" placeholder="Фамилия" maxlength="50" size="35" class="text" name ="lastname"><br><br>
             <input type="text" placeholder="Имя" maxlength="50" size="35" class="text" name ="name"><br><br>

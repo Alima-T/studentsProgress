@@ -30,7 +30,6 @@ public class StudentCreateController extends HttpServlet {
         String lastname = req.getParameter("lastname");
         String name = req.getParameter("name");
         String group = req.getParameter("group");
-//        String date = req.getParameter("date");
         String date = req.getParameter("date");
         DateFormat format = new SimpleDateFormat(DATE_PATTERN_FOR_USER); //устанавливаем удобный для пользователей формат даты
         Date dateNew = null;

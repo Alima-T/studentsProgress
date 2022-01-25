@@ -41,11 +41,11 @@ public class StudentModifyController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String id = req.getParameter("id");
         String lastname = req.getParameter("lastname");
         String name = req.getParameter("name");
         String group = req.getParameter("group");
-//        String date = req.getParameter("date");
         String date = req.getParameter("date");
         DateFormat format = new SimpleDateFormat(DATE_PATTERN_FOR_USER); //устанавливаем удобный для пользователей формат даты
         Date dateNew = null;
@@ -66,50 +66,5 @@ public class StudentModifyController extends HttpServlet {
             DBManager.modifyStudent(id,lastname, name, group, dateForSQL);
             resp.sendRedirect("/students");
         }
-//
-//        String id = req.getParameter("id");
-//        String disc = req.getParameter("disc");
-//        if (disc == null || disc.equals("")) { //последовательность важна!
-//            req.setAttribute("message", "error");
-//            Discipline discipline = DBManager.getDisciplineByID(id);
-//            req.setAttribute("disc", discipline);
-//            req.getRequestDispatcher("WEB-INF/jsp/discipline-modify.jsp").forward(req, resp);
-//            return;
-//        }
-//
-//        DBManager.modifyDiscipline(id, disc);
-//        resp.sendRedirect("/disciplines");
-//
-//        req.setCharacterEncoding("UTF-8");
-//        String id = req.getParameter("id");
-//        String lastname = req.getParameter("lastname");
-//        String name = req.getParameter("name");
-//        String group = req.getParameter("group");
-//        String date = req.getParameter("date");
-//
-//        String dateFormat = null;
-//        if (lastname.equals("") || name.equals("") || group.equals("") || date.equals("")) {
-//            req.setAttribute("error", "1");
-//            req.getRequestDispatcher("WEB-INF/jsp/student-modify.jsp").forward(req, resp);
-//        } else {
-//            if (!date.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d")) {
-//                String pattern = "MM/dd/yyyy";
-//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-//                Date date2 = null;
-//                try {
-//                    date2 = simpleDateFormat.parse(date);
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//                String pattern1 = "yyyy-MM-dd HH:mm:ss";
-//                SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat(pattern1);
-//                dateFormat = simpleDateFormat1.format(date2);
-//                DBManager.modifyStudent(id, lastname, name, group, date);
-//                resp.sendRedirect("/students");
-//            } else {
-//                DBManager.modifyStudent(id, lastname, name, group, date);
-//                resp.sendRedirect("/students");
-//            }
-//        }
     }
 }

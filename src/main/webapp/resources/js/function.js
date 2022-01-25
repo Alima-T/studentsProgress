@@ -9,7 +9,7 @@ function modifyDiscipline() {
         return;
     }
     if (checkedBoxes.length > 1) {
-        alert("Пожалуйста, выберите только одну дисциплину")
+        alert("Please choose only one discipline")
         return;
     }
     var id = checkedBoxes[0].getAttribute("value");
@@ -32,6 +32,22 @@ function deleteDisciplines() {
     var hidden = document.getElementById("hiddenDeleteDisc")
     hidden.setAttribute("value", discIds);
     var form = document.getElementById("formDelete");
+    form.submit();
+}
+function modifyStudent() {
+    var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
+    if (checkedBoxes.length == 0) {
+        alert("Please choose one student")
+        return;
+    }
+    if (checkedBoxes.length > 1) {
+        alert("Please choose only one student")
+        return;
+    }
+    var id = checkedBoxes[0].getAttribute("value")
+    var hidden = document.getElementById("hiddenModify")
+    hidden.setAttribute("value", id)
+    var form = document.getElementById("formModify")
     form.submit();
 }
 function deleteStudents() {
@@ -66,48 +82,6 @@ function studentProgress() {
     var form = document.getElementById("formStudentProgress")
     form.submit();
 }
-
-function modifyStudent() {
-    var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
-    if (checkedBoxes.length == 0) {
-        alert("Please choose one student")
-        return;
-    }
-    if (checkedBoxes.length > 1) {
-        alert("Please choose only one student")
-        return;
-    }
-    var id = checkedBoxes[0].getAttribute("value")
-    var hidden = document.getElementById("hiddenModify")
-    hidden.setAttribute("value", id)
-    var form = document.getElementById("formModify")
-    form.submit();
-}
-
-// function modifyStudent() {
-//     var items = $("input[type=checkbox]:checked");
-//     if (items.length == 0) {
-//         alert("Выберите одного студента");
-//         return;
-//     }
-//     if (items.length > 1) {
-//         alert("Выберите только одного студента");
-//         return;
-//     }
-//     var ids;
-//     for (var i = 0; i < items.length; i++) {
-//         if (ids == null) {
-//             ids = "'" + $(items[i]).attr("value");
-//         } else {
-//             ids = ids + "','" + $(items[i]).attr("value");
-//         }
-//         if (i == items.length - 1) {
-//             ids = ids + "'"
-//         }
-//     }
-//     $('#modifyStudHidden').val(ids);
-//     $('#modifyStudForm').submit();
-// }
 
 function perfomanceStudent() {
     var items = $("input[type=checkbox]:checked");
