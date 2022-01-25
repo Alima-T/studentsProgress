@@ -12,16 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../resources/css/style.css?v=12">
     <link rel="stylesheet" href="../../resources/css/font.css?v=12">
+    <script type="text/javascript" src="../../resources/js/function.js?v=12" charset="UTF-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/JavaScript/function.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function () {
-            $("#datepicker").datepicker();
-        });
-    </script>
+    <script>$(function () {
+        $("#datepicker").datepicker();
+    });</script>
     <title>Student-modify</title>
 </head>
 
@@ -34,30 +33,25 @@
             <div class="block__element_hidden"><a href="/students">Назад</a></div>
         </div>
     </div>
-    <div class="center-block">
+    <div class="block__center">
         <h3>Для внесения изменения в запись студента заполните все поля и нажмите на кнопку "Применить"</h3>
         <label>Название</label>
-        <form action="/student-modify" method="post">
-            <div>
-                <input type="hidden" name="id" value="${id}">
-                <div class="display-flex"><label>Фамилия</label>
-                    <input type="text" name="modifiedLastname" value="${selectedStudent.lastname}"></div>
-                <div class="display-flex"><label>Имя</label>
-                    <input type="text" name="modifiedName" value="${selectedStudent.name}"></div>
-                <div class="display-flex"><label>Группа</label>
-                    <input type="text" name="modifiedGroup" value="${selectedStudent.group}"></div>
-                <div class="display-flex"><label>Дата поступления</label>
-                    <input name="modifiedDate" type="text" id="datepicker"
-                           autocomplete="off" value="${selectedStudent.date}"></div>
-                <div class="display-flex"><input type="submit" value="Применить"></div>
-            </div>
+        <form action="/student-modify" method="post"><br><br>
+            <input name="id" type="hidden" value="${studentForJSP.id}">
+            <input name="new_lastname" type="text" value="${studentForJSP.lastname}">
+            <input name="new_name" type="text" value="${studentForJSP.name}">
+            <input name="new_group" type="text" value="${studentForJSP.group}">
+            <input name="new_date" type="text" id="datepicker" value="${studentForJSP.date}">
+            <input type="submit" value="Применить">
         </form>
+        <c:if test="${message eq 'error'}">
+            <h5>Поле не должно быть пустым!</h5>
+        </c:if>
     </div>
+    </form>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous"></script>
+<div class="block__left"></div>
+</div>
 
 </body>
 </html>

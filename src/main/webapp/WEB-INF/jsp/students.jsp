@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../resources/css/style.css?v=12">
     <link rel="stylesheet" href="../../resources/css/font.css?v=12">
+    <script type="text/javascript" src="../../resources/js/function.js?v=12" charset="UTF-8"></script>
     <title>Students</title>
 </head>
 <body>
@@ -46,10 +47,10 @@
                     </form>
                 </div>
                 <div class="block__form4 block__element_2">
-                    <form id="formDelete" action="/student-delete" method="post">
+                    <form id="formDelete" action="/students-delete" method="post">
                         <input class="inblock" type="submit" onclick="deleteStudents()"
                                value="Удалить записи выбранных студентов">
-                        <input type="hidden" id="hiddenDeleteSt" name="hiddenDeleteSt">
+                        <input type="hidden" id="hiddenDeleteStud" name="hiddenDeleteStud">
                     </form>
                 </div>
 <%--            </c:if>--%>
@@ -59,7 +60,9 @@
     <h4>Список студентов</h4>
     <table class="table-student-list">
         <tr>
+<%--            <c:if test="${role == 1}">--%>
             <th style="width: 10%">Выбрать</th>
+<%--            </c:if>--%>
             <th style="width: 30%">Фамилия</th>
             <th style="width: 30%">Имя</th>
             <th style="width: 15%">Группа</th>
@@ -68,19 +71,17 @@
         <c:forEach items="${allStudents}"
                    var="stud">   <%--  allStudents - copypass из StudentsController req.setAttribute("allStudents", students);--%>
             <tr>
+<%--                <c:if test="${role == 1}">--%>
                 <td><input type="checkbox" value="${stud.id}"></td>
+<%--                </c:if>--%>
                 <td>${stud.lastname}</td>
                 <td>${stud.name}</td>
                 <td>${stud.group}</td>
-                <td><fmt:formatDate value="${stud.date}" pattern="yyyy/MM/dd"></fmt:formatDate></td>
+                <td><fmt:formatDate value="${stud.date}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
             </tr>
         </c:forEach>
     </table>
 </div>
-
-<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"--%>
-<%--        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"--%>
-<%--        crossorigin="anonymous"></script>--%>
 
 </body>
 </html>

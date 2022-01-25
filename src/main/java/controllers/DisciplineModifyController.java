@@ -16,19 +16,21 @@ public class DisciplineModifyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("hiddenModify");
-        Discipline disc = DBManager.getDisciplineByID(id);
-        req.setAttribute("disc", disc);
+      //  System.out.println(id); //проверка в консоли на корректность
+        Discipline discipline = DBManager.getDisciplineByID(id);// id - объект строкой выше (String id = req.getParameter("hiddenModify");)
+        req.setAttribute("disciplineForJSP", discipline); // disForJSP - название посылки для jsp страницы, и саму посылку (объект)
         req.getRequestDispatcher("WEB-INF/jsp/discipline-modify.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        String disc = req.getParameter("disc");
+
+        String disc = req.getParameter("discipl"); //название обязательно, пойдет в jsp  name="discipl"
         if (disc == null || disc.equals("")) { //последовательность важна!
             req.setAttribute("message", "error");
             Discipline discipline = DBManager.getDisciplineByID(id);
-            req.setAttribute("disc", discipline);
+            req.setAttribute("discipline", discipline);
             req.getRequestDispatcher("WEB-INF/jsp/discipline-modify.jsp").forward(req, resp);
             return;
         }

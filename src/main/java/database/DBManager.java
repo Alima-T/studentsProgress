@@ -6,21 +6,23 @@ import entity.Group;
 import entity.Student;
 import entity.Term;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static constants.Constants.DB;
+
 public class DBManager {
 
-//    STUDENTS
+    //    STUDENTS
     public static ArrayList<Student> getAllActiveStudents() {
         ArrayList<Student> students = new ArrayList<Student>();
         try {
             String id;
-            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM  `students_19`.`student` where status= '1';");
+            ResultSet rs = DB.executeQuery("SELECT * FROM  `students_19`.`student` where status= '1';");
             while (rs.next()) {
                 Student student = new Student();
                 student.setId(rs.getInt("id"));
@@ -37,10 +39,10 @@ public class DBManager {
     }
 
     public static Student getStudentByID(String id) {
-        Student student = new Student();       
+        Student student = new Student();
         ArrayList<Student> students = new ArrayList<>();
         try {
-            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM `students_19`.`student` WHERE status = '1' AND id = " + id + ";");
+            ResultSet rs = DB.executeQuery("SELECT * FROM `students_19`.`student` WHERE status = '1' AND id = " + id + ";");
             while (rs.next()) {
                 student.setId(rs.getInt("id"));
                 student.setLastname(rs.getString("lastname"));
@@ -54,40 +56,9 @@ public class DBManager {
         return student;
     }
 
-    public static void createNewStudent(String lastname, String name, String group, Date date, int status) {
-        try {
-            Constants.DB.execute("INSERT INTO `students_19`.`student` ( `lastname`, `name`, `group`, `date`) " +
-                    "VALUES ('" + lastname + "', '" + name + "', '" + group + "', '" + date + "');");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static void deleteStudents(String id) {
-        try {
-            Constants.DB.execute("UPDATE `students_19`.`student` SET `status` = '0' WHERE (`id` = '" + id + "');\n");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-public static void modifyStudent(String id, String lastname, String name, String group, String date){
-        try {
-            Constants.DB.execute("UPDATE `students_19'.`student` SET " +
-                    "`lastname` = '" + lastname + "', " +
-                    "`name` = '" + name + "', " +
-                    "`group` = '" + group + "', " +
-                    "`date` = '" + date + "' " +
-                    "WHERE (`id` = '" + id + "');");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static Student getStudent(String id) {
         try {
-            ResultSet rs = Constants.DB.executeQuery("select  lastname, name, group, date from students_19.student where id =" + id + "");
+            ResultSet rs = DB.executeQuery("select  lastname, name, group, date from students_19.student where id =" + id + "");
             while (rs.next()) {
                 Student student = new Student();
                 student.setLastname(rs.getString("lastname"));
@@ -102,15 +73,41 @@ public static void modifyStudent(String id, String lastname, String name, String
         return null;
     }
 
-//    DISCIPLINES
+    public static void createNewStudent(String lastname, String name, String group, String date) {
+        try {
+            DB.execute("INSERT INTO `students_19`.`student` ( `lastname`, `name`, `group`, `date`) " +
+                    "VALUES ('" + lastname + "', '" + name + "', '" + group + "', '" + date + "');");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteStudents(String id) {
+        try {
+            DB.execute("UPDATE `students_19`.`student` SET `status` = '0' WHERE (`id` = '" + id + "');");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void modifyStudent(String id, String lastname, String name, String group, String date) {
+        try {
+            DB.execute ("UPDATE `students_19`.`student` " +
+                    "SET `lastname` ='" + lastname + "', `name` ='" + name + "', `group` ='" + group + "', `date` ='" + date + "' WHERE(`id` = '" + id + "');");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //    DISCIPLINES
     public static ArrayList<Discipline> getAllActiveDisciplines() {
         ArrayList<Discipline> disciplines = new ArrayList<Discipline>();
         try {
-            ResultSet rs = Constants.DB.executeQuery("select * from `discipline` where `status`='1'");
+            ResultSet rs = DB.executeQuery("select * from `discipline` where `status`='1'");
             while (rs.next()) {
                 Discipline discipline = new Discipline();
-                discipline.setDiscipline(rs.getString("discipline"));
                 discipline.setId(rs.getInt("id"));
+                discipline.setDiscipline(rs.getString("discipline"));
                 disciplines.add(discipline);
             }
         } catch (Exception e) {
@@ -122,7 +119,7 @@ public static void modifyStudent(String id, String lastname, String name, String
     public static Discipline getDisciplineByID(String id) {
         Discipline discipline = new Discipline();
         try {
-            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM students_19.discipline where id ='" + id + "';");// id приходит из js от клиента
+            ResultSet rs = DB.executeQuery("SELECT * FROM students_19.discipline where id ='" + id + "';");// id приходит из js от клиента
             while (rs.next()) {
                 discipline.setDiscipline(rs.getString("discipline"));
                 discipline.setId(rs.getInt("id"));
@@ -135,7 +132,7 @@ public static void modifyStudent(String id, String lastname, String name, String
 
     public static void createNewDiscipline(String disc) {
         try {
-            Constants.DB.execute("INSERT INTO `discipline` (`discipline`) VALUES ('" + disc + "');");
+            DB.execute("INSERT INTO `discipline` (`discipline`) VALUES ('" + disc + "');");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -143,7 +140,7 @@ public static void modifyStudent(String id, String lastname, String name, String
 
     public static void modifyDiscipline(String id, String disc) {
         try {
-            Constants.DB.execute("UPDATE `students_19`.`discipline` SET `discipline` = '" + disc + "' WHERE (`id` = '" + id + "');");
+            DB.execute("UPDATE `students_19`.`discipline` SET `discipline` = '" + disc + "' WHERE (`id` = '" + id + "');");
             // копируем запрос из mySQL, удаляем название схемы и разделяем кавычками запрос + id
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,7 +149,7 @@ public static void modifyStudent(String id, String lastname, String name, String
 
     public static void deleteDiscipline(String id) {
         try {
-            Constants.DB.execute("UPDATE `students_19`.`discipline` SET `status` = '0' WHERE (`id` = '" + id + "');\n");
+            DB.execute("UPDATE `students_19`.`discipline` SET `status` = '0' WHERE (`id` = '" + id + "');\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -165,7 +162,7 @@ public static void modifyStudent(String id, String lastname, String name, String
 //                    "left join discipline on term_discipline.id_discipline = discipline.id\n" +
 //                    "where term_discipline.id_term='1' \n" +
 //                    "and discipline.status = '1' ");
-            ResultSet rs = Constants.DB.executeQuery("SELECT d.id, d.discipline FROM students_19.term_discipline as td \n" +
+            ResultSet rs = DB.executeQuery("SELECT d.id, d.discipline FROM students_19.term_discipline as td \n" +
                     "left join discipline as d on td.id_discipline = d.id\n" +
                     "where td.id_term='" + idTerm + "'\n" +
                     "and d.status = '1' ");
@@ -185,11 +182,11 @@ public static void modifyStudent(String id, String lastname, String name, String
         return disciplines;
     }
 
-//    TERMS
+    //    TERMS
     public static ArrayList<Term> getAllActiveTerms() {
         ArrayList<Term> terms = new ArrayList<Term>();
         try {
-            ResultSet rs = Constants.DB.executeQuery("select * from `term` where `status`='1'");
+            ResultSet rs = DB.executeQuery("select * from `term` where `status`='1'");
             int count = 1; // счетчик для установления имени семестру, т.к. у него нет названия
             while (rs.next()) {
                 Term term = new Term();
@@ -207,7 +204,7 @@ public static void modifyStudent(String id, String lastname, String name, String
 
     public static Term getTermByID(String id) {
         try {
-            ResultSet rs = Constants.DB.executeQuery("select * from `term` where `status`='1' and `id` = '" + id + "'");
+            ResultSet rs = DB.executeQuery("select * from `term` where `status`='1' and `id` = '" + id + "'");
             while (rs.next()) {
                 Term term = new Term();
                 term.setId(rs.getInt("id"));
@@ -218,7 +215,7 @@ public static void modifyStudent(String id, String lastname, String name, String
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return null;//если не выполнится условие или мы задаем несуществующий семестр (например, 20)
     }
 
 //    public static void createNewTerm(String name, String duration) {
@@ -232,7 +229,7 @@ public static void modifyStudent(String id, String lastname, String name, String
     public static void createTerm(String duration, String[] disciplines) {
 
         try {
-            ResultSet rs = Constants.DB.executeQuery("SELECT id,  term FROM students_19.terms ORDER BY ID DESC limit 1");
+            ResultSet rs = DB.executeQuery("SELECT id,  term FROM students_19.terms ORDER BY ID DESC limit 1");
             String currentTerm = null;
             int idTerm = 0;
             while (rs.next()) {
@@ -242,37 +239,35 @@ public static void modifyStudent(String id, String lastname, String name, String
             int termNumber = 0;
             termNumber = Integer.parseInt(currentTerm.substring(8));
             String term = "Семестр " + (++termNumber);
-            Constants.DB.execute("INSERT INTO `students_19`.`terms` (`term`, `duration`) VALUES ('" + term + "','" + duration + "')");
+            DB.execute("INSERT INTO `students_19`.`terms` (`term`, `duration`) VALUES ('" + term + "','" + duration + "')");
 
             int newId = ++idTerm;
             for (String discipline : disciplines) {
-                ResultSet rs1 = Constants.DB.executeQuery("SELECT id FROM students_19.disciplines\n" +
+                ResultSet rs1 = DB.executeQuery("SELECT id FROM students_19.disciplines\n" +
                         "where discipline ='" + discipline + "'");
                 int idDiscipline = 0;
                 while (rs1.next()) {
                     idDiscipline = rs1.getInt("id");
                 }
-                Constants.DB.execute("INSERT INTO `students_19`.`terms_disciplines` (`term_id`, `discipline_id`) VALUES ('" + newId + "','" + idDiscipline + "')");
+                DB.execute("INSERT INTO `students_19`.`terms_disciplines` (`term_id`, `discipline_id`) VALUES ('" + newId + "','" + idDiscipline + "')");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
     public static void deleteTerm(String idTermDelete) {
         try {
-            Constants.DB.execute("UPDATE `students_19`.`terms` SET `status` = '0' WHERE (`id` = '" + idTermDelete + "');");
+            DB.execute("UPDATE `students_19`.`terms` SET `status` = '0' WHERE (`id` = '" + idTermDelete + "');");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
     public static String getDisciplineName(String id) {
         String name = null;
         try {
-            ResultSet rs = Constants.DB.executeQuery("select discipline from students_19.discipline where id =" + id + "");
+            ResultSet rs = DB.executeQuery("select discipline from students_19.discipline where id =" + id + "");
             while (rs.next()) {
                 name = rs.getString("discipline");
             }
@@ -285,7 +280,7 @@ public static void modifyStudent(String id, String lastname, String name, String
     public static Term getTermById(String idTerm) {
 
         try {
-            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM students_19.term where id = " + idTerm);
+            ResultSet rs = DB.executeQuery("SELECT * FROM students_19.term where id = " + idTerm);
 
             while (rs.next()) {
                 Term term = new Term();
@@ -330,15 +325,15 @@ public static void modifyStudent(String id, String lastname, String name, String
         }
         String durationResult = duration1 + wordWeek;
         try {
-            Constants.DB.execute("DELETE FROM `students_19`.`term_discipline` WHERE (`id_term` = '" + id + "')");
+            DB.execute("DELETE FROM `students_19`.`term_discipline` WHERE (`id_term` = '" + id + "')");
             if (modifiedDisciplinesId != null) {
                 for (String newDisciplineId : modifiedDisciplinesId) {
-                    Constants.DB.execute("INSERT INTO `students_19`.`term_discipline` (`id_term`, `id_discipline`) VALUES ('" + id + "', '" + newDisciplineId + "')");
+                    DB.execute("INSERT INTO `students_19`.`term_discipline` (`id_term`, `id_discipline`) VALUES ('" + id + "', '" + newDisciplineId + "')");
 //                    INSERT INTO `students_19`.`term` (`id`, `duration`, `status`) VALUES ('4', '24 недели', '1');// creation
 //                    INSERT INTO `students_19`.`term_discipline` (`id_term`, `id_discipline`) VALUES ('4', '12');//creation
                 }
             }
-            Constants.DB.execute("UPDATE `students_19`.`term` SET `duration` = '" + durationResult + "' WHERE (`id` = '" + id + "')");
+            DB.execute("UPDATE `students_19`.`term` SET `duration` = '" + durationResult + "' WHERE (`id` = '" + id + "')");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -347,7 +342,7 @@ public static void modifyStudent(String id, String lastname, String name, String
     // LOGIN/LOGOUT
     public static boolean isVerifiedUser(String login, String password, String role) {
         try {
-            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM students_19.user_role as us\n" +
+            ResultSet rs = DB.executeQuery("SELECT * FROM students_19.user_role as us\n" +
                     "left join user as u on us.id_user = u.id \n" +
                     "where u.login = '" + login + "' and u.password = '" + password + "' and us.id_role = " + role);
             while (rs.next()) {
@@ -359,11 +354,10 @@ public static void modifyStudent(String id, String lastname, String name, String
         return false;
     }
 
-
     public static LinkedHashMap<Discipline, String> getDisciplinesAndMarkByTerm(String id, String termId) {
         LinkedHashMap<Discipline, String> disciplinesAndMark = new LinkedHashMap<>();
         try {
-            ResultSet rs = Constants.DB.executeQuery("select discipline.id, discipline.discipline , mark.mark  from students_control.marks\n" +
+            ResultSet rs = DB.executeQuery("select discipline.id, discipline.discipline , mark.mark  from students_control.marks\n" +
                     "join students_19.term_discipline on marks.id_term_discipline=terms_disciplines.id\n" +
                     "join students_19.term on term_disciplines.id_term = term.id\n" +
                     "join students_19.discipline on term_discipline.discipline=disciplines.id\n" +

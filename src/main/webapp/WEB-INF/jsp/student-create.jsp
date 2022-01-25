@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../resources/css/style.css?v=12">
     <link rel="stylesheet" href="../../resources/css/font.css?v=12">
+    <script type="text/javascript" src="../../resources/js/function.js?v=12" charset="UTF-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/JavaScript/function.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -35,11 +36,10 @@
         <%-- оборачиваем в form, иначе не работают кнопки.
         action передает данные на контроллер по urlPatterns = "/student-create"--%>
         <form action="/student-create" method="post"><br><br>
-            <input type="text" placeholder="Фамилия" lastname="createStudLastname" maxlength="50" size="35" class="text"value="${student.lastname}"><br><br>
-            <input type="text" placeholder="Имя" name="createStudName" maxlength="50" size="35" class="text" value="${student.name}"><br><br>
-            <input type="text" placeholder="Группа" group="createStudGroup" maxlength="5" size="5" class="text" value="${student.id_group}"><br><br>
-            <input type="text" placeholder="Дата поступления" id="datepicker" name="date" maxlength="10" size="10" class="text"value="${student.date}"><br><br>
-<%--            <input type="text" placeholder="Статус" name="createStatus" maxlength="5" size="5" class="text" value="${student.status}"><br><br>--%>
+            <input type="text" placeholder="Фамилия" maxlength="50" size="35" class="text" name ="lastname"><br><br>
+            <input type="text" placeholder="Имя" maxlength="50" size="35" class="text" name ="name"><br><br>
+            <input type="text" placeholder="Группа" maxlength="5" size="5" class="text" name ="group"><br><br>
+            <input type="text" placeholder="Дата поступления" id="datepicker" maxlength="10" size="10" class="text" name ="date"><br><br>
             <input type="submit" value="Создать">
         </form>
         <c:if test="${message eq 'error'}">

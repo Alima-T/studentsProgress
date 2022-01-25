@@ -77,7 +77,7 @@
             <div class="block__form3 block__element_2">
                 <form action="/term-modify" method="get">
                     <input class="inblock" type="submit" onclick="modifyTerm()" value="Модифицировать выбранный семестр">
-                    <input type="hidden" id="hiddenModify" name="hiddenModify">
+<%--                    <input type="hidden" id="hiddenModify" name="hiddenModify">--%>
                     <input type="hidden" value="${selectedTerm.id}" name="idModify">
                 </form>
             </div>

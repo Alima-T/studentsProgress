@@ -29,8 +29,8 @@
         <br>
         <label>Название</label>
         <form action="/discipline-modify" method="post">
-            <input name="id" type="hidden" value="${disc.id}">
-            <input name="disc" type="text" value="${disc.discipline}">
+            <input name="id" type="hidden" value="${disciplineForJSP.id}">
+            <input name="discipl" type="text" value="${disciplineForJSP.discipline}">
             <input type="submit" value="Применить">
         </form>
         <c:if test="${message eq 'error'}">
