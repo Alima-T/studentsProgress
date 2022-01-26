@@ -7,6 +7,7 @@ import entity.Student;
 import entity.Term;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -225,8 +226,14 @@ public class DBManager {
 //            e.printStackTrace();
 //        }
 //    }
-
-    public static void createTerm(String duration, String[] disciplines) {
+//public static void createNewTerm(String newTerm) {
+//    try {
+//        ResultSet rs = DB.executeQuery("INSERT INTO `students_19`.`term` (`duration`) VALUES ('"+ newTerm+"');");
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
+//}
+    public static void createNewTerm(String duration, ArrayList <Discipline> disciplines) {
 
         try {
             ResultSet rs = DB.executeQuery("SELECT id,  term FROM students_19.terms ORDER BY ID DESC limit 1");
@@ -242,7 +249,7 @@ public class DBManager {
             DB.execute("INSERT INTO `students_19`.`terms` (`term`, `duration`) VALUES ('" + term + "','" + duration + "')");
 
             int newId = ++idTerm;
-            for (String discipline : disciplines) {
+            for (Discipline discipline : disciplines) {
                 ResultSet rs1 = DB.executeQuery("SELECT id FROM students_19.disciplines\n" +
                         "where discipline ='" + discipline + "'");
                 int idDiscipline = 0;
@@ -256,27 +263,26 @@ public class DBManager {
         }
     }
 
-    public static void deleteTerm(String idTermDelete) {
+    public static void deleteTerm(String id) {
         try {
-            DB.execute("UPDATE `students_19`.`terms` SET `status` = '0' WHERE (`id` = '" + idTermDelete + "');");
+            DB.execute("UPDATE `students_19`.`terms` SET `status` = '0' WHERE (`id` = '" + id + "');");
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
-    public static String getDisciplineName(String id) {
-        String name = null;
-        try {
-            ResultSet rs = DB.executeQuery("select discipline from students_19.discipline where id =" + id + "");
-            while (rs.next()) {
-                name = rs.getString("discipline");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return name;
+//    public static String getDisciplineName(String id) {
+//        String name = null;
+//        try {
+//            ResultSet rs = DB.executeQuery("select discipline from students_19.discipline where id =" + id + "");
+//            while (rs.next()) {
+//                name = rs.getString("discipline");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return name;
+//    }
     }
-
     public static Term getTermById(String idTerm) {
 
         try {
@@ -376,6 +382,8 @@ public class DBManager {
 
         return disciplinesAndMark;
     }
+
+
 }
 
 

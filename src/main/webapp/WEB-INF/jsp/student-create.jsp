@@ -31,7 +31,7 @@
             <div class="block__element_hidden"><a href="/students">Назад</a></div>
         </div>
     </div>
-    <div class="center-block">
+    <div class="block__center">
         <h3>Для создания новой записи студента введите данные и нажмите на кнопку "Создать"</h3>
         <%-- оборачиваем в form, иначе не работают кнопки / action передает данные на контроллер по urlPatterns = "/student-create"--%>
         <form action="/student-create" method="post"><br><br>
@@ -39,10 +39,10 @@
             <input type="text" placeholder="Имя" maxlength="50" size="35" class="text" name ="name"><br><br>
             <input type="text" placeholder="Группа" maxlength="5" size="5" class="text" name ="group"><br><br>
             <input type="text" placeholder="Дата поступления" id="datepicker" maxlength="10" size="10" class="text" name ="date"><br><br>
-            <input type="submit" value="Создать">
+            <input type="submit" value="Создать"><br><br>
         </form>
         <c:if test="${message eq 'error'}">
-            <h5>Поле не должно быть пустым!</h5>
+            <div style="width: 600px; padding-left: 100px"><h5 style="color: red">Поля не должны быть пустыми!</h5></div>
         </c:if>
     </div>
 </div>

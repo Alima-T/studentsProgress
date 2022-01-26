@@ -37,18 +37,18 @@
         <h3>Для внесения изменения в запись студента заполните все поля и нажмите на кнопку "Применить"</h3>
         <label>Название</label>
         <form action="/student-modify" method="post"><br><br>
-            <input name="id" type="hidden" value="${studentForJSP.id}">
-            <input name="new_lastname" type="text" value="${studentForJSP.lastname}">
-            <input name="new_name" type="text" value="${studentForJSP.name}">
-            <input name="new_group" type="text" value="${studentForJSP.group}">
-            <input name="new_date" type="text" id="datepicker" value="${studentForJSP.date}">
-            <input type="submit" value="Применить">
+<%--            <input type="hidden" value="${booking.id == null?'new':'update'}" name="action">--%>
+            <input name="id" type="hidden" value="${studentForJSP.id}" name="action">
+            <div style="width: 200px; padding-right: 10px; text-align: right">Фамилия</div><input name="new_lastname" type="text" value="${studentForJSP.lastname}"><br><br>
+            <div style="width: 200px; padding-right: 10px; text-align: right">Имя</div><input name="new_name" type="text" value="${studentForJSP.name}"><br><br>
+            <div style="width: 200px; padding-right: 10px; text-align: right">Группа</div><input name="new_group" type="text" value="${studentForJSP.group}"><br><br>
+            <div style="width: 200px; padding-right: 10px; text-align: right">Дата поступления</div><input name="new_date" type="text" id="datepicker" value="${studentForJSP.date}"><br><br>
+            <div style="width: 200px; padding-right: 10px; text-align: right"></div><input type="submit" value="Применить"><br><br>
         </form>
         <c:if test="${message eq 'error'}">
-            <h5>Поле не должно быть пустым!</h5>
+            <div style="width: 600px; padding-left: 200px"><h5 style="color: red">Поля не должны быть пустыми!</h5></div>
         </c:if>
     </div>
-    </form>
 </div>
 <div class="block__left"></div>
 </div>

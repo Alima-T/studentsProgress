@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../resources/css/style.css?v=12">
     <link rel="stylesheet" href="../../resources/css/font.css?v=12">
-    <script type="text/javascript" src="../../resoures/js/function.js?v=3" charset="UTF-8"></script>
+    <script type="text/javascript" src="../../resources/js/function.js?v=12" charset="UTF-8"></script>
     <title>Terms</title>
 </head>
 
@@ -27,33 +27,33 @@
 </div>
 <div class="container">
     <div class="block">
-        <div class="main inline">
-            <div class="row">
-                <h4>Выбрать семестр</h4>
-                <form action="/terms" method="get">
-                    <select name="selected" class="form-select term" aria-label="Default select example" style="padding: 2px 150px 2px 5px">
-                        <c:forEach items="${terms}" var="t">
-                            <c:choose>
-                                <c:when test="${t.id == selectedTerm.id}">
-                                    <option selected value="${t.id}">${t.name}</option>
-                                </c:when>
-                                <c:otherwise>
-                                    <option value="${t.id}">${t.name}</option>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </select>
-                    <div class="choose_input">
-                        <input type="submit" value="Выбрать">
-                    </div>
-                </form>
-            </div>
-            <br>
-            <br>
+        <div class="row">
+            <h4>Выбрать семестр</h4>
+            <form action="/terms" method="get">
+                <select name="selected" style="padding: 2px 150px 2px 5px">
+                    <c:forEach items="${terms}" var="t">
+                        <c:choose>
+                            <c:when test="${t.id == selectedTerm.id}">
+                                <option selected value="${t.id}">${t.name}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${t.id}">${t.name}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </select>
+                <input type="submit" value="Выбрать">
+            </form>
         </div>
-        <br>
-        <br>
-        <h4>Длительность семестра: 24 недели</h4>
+        <br><br>
+            <h4 style="float: left; padding-right: 10px">Длительность семестра: </h4>
+            <c:forEach items="${terms}" var="t">
+                <c:choose>
+                    <c:when test="${t.id == selectedTerm.id}">
+                        <div value="${t.id}">${t.duration}</div>
+                    </c:when>
+                </c:choose>
+            </c:forEach>
         <br>
         <h4>Список дисциплин семестра </h4>
         <br>
@@ -67,7 +67,7 @@
                 </tr>
             </c:forEach>
         </table>
-<%--        <c:if test="${role == 1}">--%>
+        <%--        <c:if test="${role == 1}">--%>
         <div class="block__row__column">
             <div class="block__form3 block__element_2">
                 <form action="/term-create" method="get">
@@ -76,18 +76,19 @@
             </div>
             <div class="block__form3 block__element_2">
                 <form action="/term-modify" method="get">
-                    <input class="inblock" type="submit" onclick="modifyTerm()" value="Модифицировать выбранный семестр">
-<%--                    <input type="hidden" id="hiddenModify" name="hiddenModify">--%>
+                    <input class="inblock" type="submit" onclick="modifyTerm()"
+                           value="Модифицировать выбранный семестр">
+                                        <input type="hidden" id="hiddenModify" name="hiddenModify">
                     <input type="hidden" value="${selectedTerm.id}" name="idModify">
                 </form>
             </div>
             <div class="block__form3 block__element_2">
                 <input class="inblock" type="submit" value="Удалить выбранный семестр">
                 <form id="formDelete" action="/term-delete" method="post">
-                    <input type="hidden" id="hiddenDeleteTerm"
+                    <input type="hidden" id="hiddenDelete"
                            name="hiddenDelete"> <%--найти переименован из hiddenDelete--%>
                 </form>
-<%--                </c:if>--%>
+                <%--                </c:if>--%>
             </div>
         </div>
     </div>

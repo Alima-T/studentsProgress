@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../resources/css/style.css?v=12">
+    <link rel="stylesheet" href="../../resources/css/style.css">
     <link rel="stylesheet" href="../../resources/css/font.css?v=12">
     <title>term-modify</title>
 </head>
@@ -23,16 +23,18 @@
             <div class="block__element_hidden"><a href="/terms">Назад</a></div>
         </div>
     </div>
-    <div class="center-block">
+    <div class="block__center">
         <h3>Для модификации семестра отредактируйте данные и нажмите на кнопку "Применить" </h3>
-    </div>
     <section>
-        <label>Длительность в неделях: </label>
-        <input type="text" value="${term.duration}">
-    </section>
+        <br>
+        <form action="/term-modify" method="post">
+        <label style="vertical-align: top">Длительность в неделях: </label>
+        <input style="width: 300px" type="text" value="${term.duration}">
 
-    <section>
-        <label>Дисциплины в семестре: </label>
+        <br>
+
+        <label style="vertical-align: top">Дисциплины в семестре: </label>
+
         <select multiple class="multiple">
             <c:forEach items="${allDisciplines}" var="disc">
                 <c:if test="${disc.selected}">
@@ -42,9 +44,12 @@
                     <option>${disc.discipline}</option>
                 </c:if>
             </c:forEach>
-            <input type="submit" value="Применить">
+            <input style="margin-left: 10px" type="submit" value="Применить">
         </select>
+        </form>
     </section>
+    </div>
+    <div class="block__right"></div>
 </div>
 
 </body>

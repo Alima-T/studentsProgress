@@ -34,7 +34,7 @@
             <input type="submit" value="Применить">
         </form>
         <c:if test="${message eq 'error'}">
-            <h5>Поле не должно быть пустым!</h5>
+            <h5 style="color: red">Поле не должно быть пустым!</h5>
         </c:if>
     </div>
 </div>

@@ -24,8 +24,8 @@ public class StudentModifyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("hiddenModify");
-        Student student = DBManager.getStudentByID(id);
-        req.setAttribute("studentForJSP", student);
+        Student student = DBManager.getStudentByID(id); // id - объект строкой выше (String id = req.getParameter("hiddenModify");)
+        req.setAttribute("studentForJSP", student); //- studentForJSP название посылки для jsp страницы, и саму посылку (объект)
 //        if (stud.equals("")) {
 //            resp.sendRedirect("/students");
 //        } else {
@@ -53,6 +53,11 @@ public class StudentModifyController extends HttpServlet {
         if (lastname == null || name == null || group == null || date == null ||
                 lastname.equals("") || name.equals("") || group.equals("") || date.equals("")) {
             req.setAttribute("message", "error");
+            Student student = DBManager.getStudentByID(id);
+            req.setAttribute("lastname", lastname);
+            req.setAttribute("name", name);
+            req.setAttribute("group", group);
+            req.setAttribute("date", date);
             req.getRequestDispatcher("WEB-INF/jsp/student-modify.jsp").forward(req, resp);
         } else {
             try {
@@ -67,4 +72,5 @@ public class StudentModifyController extends HttpServlet {
             resp.sendRedirect("/students");
         }
     }
+
 }

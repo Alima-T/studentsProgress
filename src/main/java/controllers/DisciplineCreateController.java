@@ -25,6 +25,7 @@ public class DisciplineCreateController extends HttpServlet { //we have to exten
             req.getRequestDispatcher("WEB-INF/jsp/discipline-create.jsp").forward(req, resp);
             return;
         }
+
         DBManager.createNewDiscipline(disc);
         resp.sendRedirect("/disciplines");
     }

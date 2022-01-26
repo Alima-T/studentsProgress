@@ -35,9 +35,31 @@ public class TermsModifyController extends HttpServlet {
         req.setAttribute("allDisciplines", allDisciplines);// namesOfTerms - название атрибута пойдет в jsp страницу в <c:forEach items="${namesOfTerms}" var="t">
 //        req.setAttribute("disciplinesByTerm",disciplinesByTerm);
         req.setAttribute("term", term);
-
         req.getRequestDispatcher("WEB-INF/jsp/term-modify.jsp").forward(req, resp); //отправляем на отображение, перенаправляем на jsp страницу terms
 
+    }
+
+    // doPost В РАБОТЕ!
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("idModify");// GET - запрос выбор семестра, требующего изменения из terms.jsp, id мы не вписываем, а выбираем семестр из списка
+        ArrayList<Discipline> allDisciplines = DBManager.getAllActiveDisciplines();
+        ArrayList<Discipline> disciplinesByTerm = DBManager.getAllActiveDisciplinesByTerm(Integer.parseInt(id));
+        Term term = DBManager.getTermByID(id);
+
+        for (int i = 0; i < allDisciplines.size(); i++) {
+            for (Discipline discByTerm : disciplinesByTerm) {
+                if (allDisciplines.get(i).getId() == discByTerm.getId()) {
+                    Discipline discNew = allDisciplines.get(i);
+                    discNew.setSelected(true);
+                    allDisciplines.set(i, discNew);
+                }
+            }
+        }
+        req.setAttribute("allDisciplines", allDisciplines);// namesOfTerms - название атрибута пойдет в jsp страницу в <c:forEach items="${namesOfTerms}" var="t">
+//        req.setAttribute("disciplinesByTerm",disciplinesByTerm);
+        req.setAttribute("term", term);
+        req.getRequestDispatcher("/terms").forward(req, resp); //отправляем на отображение, перенаправляем на jsp страницу terms
 
     }
 }
