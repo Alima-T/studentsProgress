@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> <%--декларация о том, что это код java--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
@@ -67,7 +67,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <%--        <c:if test="${role == 1}">--%>
+                <c:if test="${role == 1}">
         <div class="block__row__column">
             <div class="block__form3 block__element_2">
                 <form action="/term-create" method="get">
@@ -86,9 +86,9 @@
                 <input class="inblock" type="submit" value="Удалить выбранный семестр">
                 <form id="formDelete" action="/term-delete" method="post">
                     <input type="hidden" id="hiddenDelete"
-                           name="hiddenDelete"> <%--найти переименован из hiddenDelete--%>
+                           name="hiddenDelete">
                 </form>
-                <%--                </c:if>--%>
+                                </c:if>
             </div>
         </div>
     </div>

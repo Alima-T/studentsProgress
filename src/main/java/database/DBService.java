@@ -218,20 +218,6 @@ public class DBService {
         return null;//если не выполнится условие или мы задаем несуществующий семестр (например, 20)
     }
 
-//    public static void createNewTerm(String name, String duration) {
-//        try {
-//            Constants.DB.execute("INSERT INTO `term` (`name`, `duration`) VALUES ('" + name + "', '" + duration + "');");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//public static void createNewTerm(String newTerm) {
-//    try {
-//        ResultSet rs = DB.executeQuery("INSERT INTO `students_19`.`term` (`duration`) VALUES ('"+ newTerm+"');");
-//    } catch (SQLException e) {
-//        e.printStackTrace();
-//    }
-//}
     public static void createNewTerm(String duration, ArrayList <Discipline> disciplines) {
 
         try {
@@ -268,19 +254,6 @@ public class DBService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-//    public static String getDisciplineName(String id) {
-//        String name = null;
-//        try {
-//            ResultSet rs = DB.executeQuery("select discipline from students_19.discipline where id =" + id + "");
-//            while (rs.next()) {
-//                name = rs.getString("discipline");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return name;
-//    }
     }
     public static Term getTermById(String idTerm) {
 

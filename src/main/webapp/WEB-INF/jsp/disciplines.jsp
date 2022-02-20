@@ -1,7 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> <%--декларация о том, что это код java--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page isELIgnored="false" %> <%--После развертывания проекта JSF страница не может проанализировать выражения--%>
+<%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@
 <c:import url="common/header.jsp"/>
 <div class="main inline">
     <div class="block__left">
-        <a href="/home">На главную</a> <%-- or "../index.jsp"--%>
+        <a href="/home">На главную</a>
     </div>
     <div class="block__center">
         <h4>Список дисциплин</h4>
@@ -41,7 +41,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <%--        <c:if test="${role == 1}">--%>
+                <c:if test="${role == 1}">
         <div class="block__row__column">
             <div class="block__form3 block__element_2">
                 <form action="/discipline-create" method="get">
@@ -61,6 +61,7 @@
                 </form>
             </div>
         </div>
+                </c:if>
     </div>
 </div>
 

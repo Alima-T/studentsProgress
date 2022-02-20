@@ -2,7 +2,7 @@ CRM system for tracking student progress with authorization and access rights ba
 
 For full access, use the admin's username and password.
 
-![Иллюстрация к проекту](src/print_screens/students_progress_app.jpg)
-![Иллюстрация к проекту](src/print_screens/students_progress_app1.jpg)
-![Иллюстрация к проекту](src/print_screens/students_progress_app2.jpg)
+![Иллюстрация к проекту](src/Demo/students_progress_app.jpg)
+![Иллюстрация к проекту](src/Demo/students_progress_app1.jpg)
+![Иллюстрация к проекту](src/Demo/students_progress_app2.jpg)
 

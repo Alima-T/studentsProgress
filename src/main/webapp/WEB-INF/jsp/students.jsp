@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> <%--декларация о том, что это код java--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
@@ -33,7 +33,7 @@
                            value="Посмотреть успеваемость выбранных студентов">
                 </form>
             </div>
-<%--            <c:if test="${role == 1}">--%>
+            <c:if test="${role == 1}">
                 <div class="block__form4 block__element_2">
                     <form action="/student-create" method="get">
                         <input class="inblock" type="submit" value="Создать студента">
@@ -53,16 +53,16 @@
                         <input type="hidden" id="hiddenDeleteStud" name="hiddenDeleteStud">
                     </form>
                 </div>
-<%--            </c:if>--%>
+            </c:if>
         </div>
     </div>
     <br>
     <h4>Список студентов</h4>
     <table class="table-student-list">
         <tr>
-<%--            <c:if test="${role == 1}">--%>
+            <c:if test="${role == 1}">
             <th style="width: 10%">Выбрать</th>
-<%--            </c:if>--%>
+            </c:if>
             <th style="width: 30%">Фамилия</th>
             <th style="width: 30%">Имя</th>
             <th style="width: 15%">Группа</th>
@@ -71,9 +71,9 @@
         <c:forEach items="${allStudents}"
                    var="stud">   <%--  allStudents - copypass из StudentsController req.setAttribute("allStudents", students);--%>
             <tr>
-<%--                <c:if test="${role == 1}">--%>
+                <c:if test="${role == 1}">
                 <td><input type="checkbox" value="${stud.id}"></td>
-<%--                </c:if>--%>
+                </c:if>
                 <td>${stud.lastname}</td>
                 <td>${stud.name}</td>
                 <td>${stud.group}</td>

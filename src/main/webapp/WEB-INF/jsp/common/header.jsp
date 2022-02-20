@@ -5,7 +5,7 @@
   Time: 4:38 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> <%--декларация о том, что это код java--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
@@ -39,11 +39,5 @@
     </div>
 </div>
 </body>
-<%--<div class="main inline">--%>
-<%--    <div class="left-block">--%>
-<%--        <a class="nav-link active home" aria-current="page" href="../index.jsp">На главную</a>--%>
-<%--        <a class="a-na-glavnuu" href="/disciplines">Назад</a>--%>
-<%--    </div>--%>
-<%--</div>--%>
 
 </html>
