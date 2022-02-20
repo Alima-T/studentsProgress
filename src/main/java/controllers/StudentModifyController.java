@@ -25,18 +25,8 @@ public class StudentModifyController extends HttpServlet {
         String id = req.getParameter("hiddenModify");
         Student student = DBService.getStudentByID(id); // id - объект строкой выше (String id = req.getParameter("hiddenModify");)
         req.setAttribute("studentForJSP", student); //- studentForJSP название посылки для jsp страницы, и саму посылку (объект)
-//        if (stud.equals("")) {
-//            resp.sendRedirect("/students");
-//        } else {
-//            ArrayList<Student> students = DBManager.getAllActiveStudents();
-//            for (Student student : students) {
-//                if (student.getId() == Integer.parseInt(id)) {
-//                    req.setAttribute("selectedStudent", student);
-//                }
         req.getRequestDispatcher("WEB-INF/jsp/student-modify.jsp")
                 .forward(req, resp);
-//            }
-//        }
     }
 
     @Override
@@ -52,14 +42,6 @@ public class StudentModifyController extends HttpServlet {
 
         if (lastname == null || name == null || group == null || date == null || lastname.equals("") || name.equals("") || group.equals("") || date.equals("")) {
             req.setAttribute("message", "error");
-        } else {
-            Student student = DBService.getStudentByID(id);
-            req.setAttribute("lastname", lastname);
-            req.setAttribute("name", name);
-            req.setAttribute("group", group);
-            req.setAttribute("date", date);
-            req.getRequestDispatcher("WEB-INF/jsp/student-modify.jsp")
-                    .forward(req, resp);
         }
         try {
             dateFromUser = format.parse(date);
