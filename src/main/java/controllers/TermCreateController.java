@@ -1,8 +1,7 @@
 package controllers;
 
-import database.DBManager;
+import database.DBService;
 import entity.Discipline;
-import entity.Term;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +16,7 @@ public class TermCreateController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ArrayList<Discipline> allDisciplines = DBManager.getAllActiveDisciplines();
+        ArrayList<Discipline> allDisciplines = DBService.getAllActiveDisciplines();
         req.setAttribute("allDisciplines", allDisciplines);// namesOfTerms - название атрибута пойдет в jsp страницу в <c:forEach items="${namesOfTerms}" var="t">
         req.getRequestDispatcher("WEB-INF/jsp/term-create.jsp").forward(req, resp);
     }
@@ -27,14 +26,14 @@ public class TermCreateController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String newTerm = req.getParameter("newTerm");
         String duration = req.getParameter("newDuration");
-        ArrayList<Discipline> allDisciplines = DBManager.getAllActiveDisciplines();
-        ArrayList<Discipline> disciplinesOfNewTerm = DBManager.getAllActiveDisciplinesByTerm(Integer.parseInt(newTerm)); //подумать над id
+        ArrayList<Discipline> allDisciplines = DBService.getAllActiveDisciplines();
+        ArrayList<Discipline> disciplinesOfNewTerm = DBService.getAllActiveDisciplinesByTerm(Integer.parseInt(newTerm)); //подумать над id
 
         if (newTerm == null || newTerm.equals("")) {
             req.setAttribute("message", "error"); //for jsp
             req.getRequestDispatcher("/terms").forward(req, resp);
         }
-        DBManager.createNewTerm(duration, disciplinesOfNewTerm);
+        DBService.createNewTerm(duration, disciplinesOfNewTerm);
         resp.sendRedirect("/terms");
     }
 }

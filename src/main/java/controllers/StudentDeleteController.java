@@ -1,6 +1,6 @@
 package controllers;
 
-import database.DBManager;
+import database.DBService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +17,7 @@ public class StudentDeleteController extends HttpServlet {
         String studIds = req.getParameter("hiddenDeleteStud");
         String[] studIdsToDelete = studIds .split("-");
         for (String id : studIdsToDelete) {
-            DBManager.deleteStudents(id);
+            DBService.deleteStudents(id);
         }
         resp.sendRedirect("/students");
     }

@@ -1,6 +1,6 @@
 package controllers;
 
-import database.DBManager;
+import database.DBService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +17,7 @@ public class DisciplineDeleteController extends HttpServlet {
         String discIds = req.getParameter("hiddenDeleteDisc");
         String[] idsToDelete = discIds.split("-");
         for (String id : idsToDelete) {
-            DBManager.deleteDiscipline(id);
+            DBService.deleteDiscipline(id);
         }
         resp.sendRedirect("/disciplines");
     }

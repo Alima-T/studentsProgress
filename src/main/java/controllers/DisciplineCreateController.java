@@ -1,6 +1,6 @@
 package controllers;
 
-import database.DBManager;
+import database.DBService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +26,7 @@ public class DisciplineCreateController extends HttpServlet { //we have to exten
             return;
         }
 
-        DBManager.createNewDiscipline(disc);
+        DBService.createNewDiscipline(disc);
         resp.sendRedirect("/disciplines");
     }
 }

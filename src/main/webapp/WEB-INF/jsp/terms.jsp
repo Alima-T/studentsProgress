@@ -46,7 +46,7 @@
             </form>
         </div>
         <br><br>
-            <h4 style="float: left; padding-right: 10px">Длительность семестра: </h4>
+        <h4 style="float: left; padding-right: 10px">Длительность семестра: </h4>
             <c:forEach items="${terms}" var="t">
                 <c:choose>
                     <c:when test="${t.id == selectedTerm.id}">

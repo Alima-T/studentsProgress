@@ -1,6 +1,6 @@
 package controllers;
 
-import database.DBManager;
+import database.DBService;
 import entity.Discipline;
 import entity.Term;
 
@@ -18,7 +18,7 @@ public class TermsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String selected = req.getParameter("selected"); //будет отображаться только при выборе, при обновлении страницы по умолчанию будет 1-й семестр
-        ArrayList<Term> terms = DBManager.getAllActiveTerms();//достаем все активные семестры
+        ArrayList<Term> terms = DBService.getAllActiveTerms();//достаем все активные семестры
         Term selectedTerm = terms.get(0);
 
         if (selected == null || selected.equals("")) {// если обновить страницу,  то возвращается 1-й семестр по умолчанию,
@@ -33,7 +33,7 @@ public class TermsController extends HttpServlet {
         }
         //если не передадим на jsp отдельно выбранный семестр, нам будет трудно, достаем отдельно выбранный семестр (у нас самый первый из списка с индексом 0)
         ArrayList<Discipline> disciplines =
-                DBManager.getAllActiveDisciplinesByTerm(selectedTerm.getId()); //достаем все дисциплины, которые есть в этом семестре.
+                DBService.getAllActiveDisciplinesByTerm(selectedTerm.getId()); //достаем все дисциплины, которые есть в этом семестре.
 
         req.setAttribute("terms", terms);// terms - название атрибута пойдет в jsp страницу в <c:forEach items="${terms}" var="t">
         req.setAttribute("selectedTerm", selectedTerm);

@@ -1,6 +1,6 @@
 package controllers;
 
-import database.DBManager;
+import database.DBService;
 import entity.Discipline;
 import services.CookiesServices;
 
@@ -30,7 +30,7 @@ public class DisciplinesController extends HttpServlet {
         }
         resp.addCookie(counter);
 
-        ArrayList<Discipline> disciplines = DBManager.getAllActiveDisciplines();
+        ArrayList<Discipline> disciplines = DBService.getAllActiveDisciplines();
         req.setAttribute("namesOfDisciplines", disciplines);// namesOfDisciplines - название атрибута пойдет в jsp страницу в <c:forEach items="${namesOfDisciplines}" var="disc">
         req.getRequestDispatcher("WEB-INF/jsp/disciplines.jsp").forward(req, resp);
     }

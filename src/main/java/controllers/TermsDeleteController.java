@@ -1,6 +1,6 @@
 package controllers;
 
-import database.DBManager;
+import database.DBService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +18,7 @@ public class TermsDeleteController extends HttpServlet { //we have to extend Htt
         String termIds = req.getParameter("hiddenDelete");
         String[] idsToDelete = termIds.split("-");
         for (String id : idsToDelete) {
-            DBManager.deleteTerm(id);
+            DBService.deleteTerm(id);
         }
         resp.sendRedirect("/terms");
     }

@@ -44,28 +44,17 @@ function modifyStudent() {
         alert("Please choose only one student")
         return;
     }
-    var id = checkedBoxes[0].getAttribute("value")
-    var hidden = document.getElementById("hiddenModify")
-    hidden.setAttribute("value", id)
-    var form = document.getElementById("formModify")
-    form.submit();
+    var id = checkedBoxes[0].value + "";
+    document.getElementById("hiddenModify").value = id;
+    document.getElementById("formModify").submit();
+
+    // var id = checkedBoxes[0].getAttribute("value")
+    // var hidden = document.getElementById("hiddenModify")
+    // hidden.setAttribute("value", id)
+    // var form = document.getElementById("formModify")
+    // form.submit();
 }
-function modifyTerm() {
-    var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');//проверяет выбран ли чек-бокс/ в var может быть любая переменная или массив
-    if (checkedBoxes.length == 0) {
-        alert("Please choose one term")
-        return;
-    }
-    if (checkedBoxes.length > 1) {
-        alert("Please choose only one term")
-        return;
-    }
-    var id = checkedBoxes[0].getAttribute("value");
-    var hidden = document.getElementById("hiddenModify")
-    hidden.setAttribute("value", id);
-    var form = document.getElementById("formModify");
-    form.submit();
-}
+
 function deleteStudents() {
     var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
     if (checkedBoxes.length == 0) {
@@ -143,7 +132,22 @@ function createTerm() {
     var form = document.getElementById("formModify");
     form.submit();
 }
-
+function modifyTerm() {
+    var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');//проверяет выбран ли чек-бокс/ в var может быть любая переменная или массив
+    if (checkedBoxes.length == 0) {
+        alert("Please choose one term")
+        return;
+    }
+    if (checkedBoxes.length > 1) {
+        alert("Please choose only one term")
+        return;
+    }
+    var id = checkedBoxes[0].getAttribute("value");
+    var hidden = document.getElementById("hiddenModify")
+    hidden.setAttribute("value", id);
+    var form = document.getElementById("formModify");
+    form.submit();
+}
 function deleteTerm() {
     var checkedBoxes = document.querySelectorAll('input[type=checkbox]:checked');
     var ids = ""; // 1-3-7-

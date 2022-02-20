@@ -1,6 +1,6 @@
 package controllers;
 
-import database.DBManager;
+import database.DBService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +32,7 @@ public class StudentCreateController extends HttpServlet {
         String group = req.getParameter("group");
         String date = req.getParameter("date");
         DateFormat format = new SimpleDateFormat(DATE_PATTERN_FOR_USER); //устанавливаем удобный для пользователей формат даты
-        Date dateNew = null;
+        Date dateFromUser = null;
 
         if (lastname == null || name == null || group == null || date == null ||
                 lastname.equals("") || name.equals("") || group.equals("") || date.equals("")) {
@@ -40,14 +40,14 @@ public class StudentCreateController extends HttpServlet {
             req.getRequestDispatcher("WEB-INF/jsp/student-create.jsp").forward(req, resp);
         } else {
             try {
-                dateNew = format.parse(date);
+                dateFromUser = format.parse(date);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
             SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN_FOR_SQL);//снова переводим формат "MM/dd/yyyy" в нужный для SQL "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
-            String dateForSQL = sdf.format(dateNew);
-            DBManager.createNewStudent(lastname, name, group, dateForSQL);
+            String dateForSQL = sdf.format(dateFromUser);
+            DBService.createNewStudent(lastname, name, group, dateForSQL);
             resp.sendRedirect("/students");
         }
     }

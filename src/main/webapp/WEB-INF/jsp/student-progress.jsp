@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Alina
+  Date: 1/30/2022
+  Time: 1:00 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> <%--декларация о том, что это код java--%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -5,7 +12,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +20,6 @@
     <link rel="stylesheet" href="../../resources/css/font.css?v=12">
     <title>Student-progress</title>
 </head>
-
 <body>
 <c:import url="common/header.jsp"/>
 <div class="main inline">
@@ -24,67 +29,81 @@
             <div class="block__element_hidden"><a href="/students">Назад</a></div>
         </div>
     </div>
-    <div class="center-block">
+    <div class="block__center">
         <h3>Отображена успеваемость для следующего студента:</h3>
-        <div class="col-md-4">
-            <h4>Выбрать семестр </h4>
-            <div class="row">
-                <form action="/terms" method="get">
-                    <div class="col-md-3">
-                        <div class="submin_le">
-                            <select name="selected" class="form-select term" aria-label="Default select example">
-                                <c:forEach items="${terms}" var="t">
-                                    <c:choose>
-                                        <c:when test="${t.id == selectedTerm.id}">
-                                            <option selected value="${t.id}">${t.name}</option>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <option value="${t.id}">${t.name}</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="submin_le">
-                            <div class="choose_input">
-                                <input type="submit" class="btn btn-primary apply" value="Выбрать">
-                            </div>
-                        </div>
-                    </div>
-                </form>
+        <table class="table-student-list">
+            <tr>
+                <th style="width: 10%">Выбрать</th>
+                <th style="width: 30%">Фамилия</th>
+                <th style="width: 30%">Имя</th>
+                <th style="width: 15%">Группа</th>
+                <th style="width: 15%">Дата поступления</th>
+            </tr>
+            <c:forEach items="${selectedStudent}"
+                       var="selectedStudent">   <%--  allStudents - copypass из StudentsController req.setAttribute("allStudents", students);--%>
+                <tr>
+                    <td><input type="checkbox" value="${stud.id}"></td>
+                    <td>${selectedStudent.lastname}</td>
+                    <td>${selectedStudent.name}</td>
+                    <td>${selectedStudent.group}</td>
+                    <td><fmt:formatDate value="${selectedStudent.date}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="block__right"></div>
+</div>
+<div class="container">
+    <div class="block">
+        <table class="table__left">
+            <br>
+            <tr>
+                <th style="width: 90%">Название дисциплины</th>
+                <th style="width: 10%">Оценка</th>
+            </tr>
+            <c:forEach items="${namesOfDisciplines}"
+                       var="disc"><%--namesOfDisciplines - copypass из req.setAttribute - DisciplinesController--%>
+                <tr>
+                    <td>${disc.discipline}</td>
+                    <td>${mark}</td>
+                        <%-- доработать как привязать оценку--%>
+                </tr>
+            </c:forEach>
+        </table>
+        <div class="block__row__column">
+            <div class="block">
+                <div class="row">
+                    <h4>Выбрать семестр</h4>
+                    <form action="/terms" method="get">
+                        <select name="selected" style="padding: 2px 150px 2px 5px">
+                            <c:forEach items="${terms}" var="t">
+                                <c:choose>
+                                    <c:when test="${t.id == selectedTerm.id}">
+                                        <option selected value="${t.id}">${t.name}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${t.id}">${t.name}</option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </select>
+                        <input type="submit" value="Выбрать">
+                    </form>
+                </div>
             </div>
-            <h4>Средняя оценка за семестр: 4,6 баллов</h4>
-            <div class="col-md-5">
-                <table class="table-main-info table-student-progress">
-                    <tbody>
-                    <tr>
-                        <th class="table-active">Дисциплина</th>
-                        <th>Оценка</th>
-                    </tr>
-                    <c:forEach items="${disciplines}" var="d">
-                        <tr>
-                            <td>${d.discipline}</td>
-                            <td>${entry.value}</td>
-                            --%>
-                        </tr>
-                    </c:forEach>
-                    <c:forEach items="${disciplinesAndMarkByTerm}" var="entry">
-                        <tr>
-                            <td>${entry.key.discipline}</td>
-                            <td>${entry.value}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
+            <br><br>
+            <h4 style="float: left; padding-right: 10px">Средняя оценка за семестр: </h4>
+            <c:forEach items="${terms}" var="t">
+                <c:choose>
+                    <c:when test="${t.id == selectedTerm.id}">
+                        <div value="${t.id}">${t.mark}</div>
+                    </c:when>
+                </c:choose>
+            </c:forEach>
+            <br>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous"></script>
 </body>
 </html>

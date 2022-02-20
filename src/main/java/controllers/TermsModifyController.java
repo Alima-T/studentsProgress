@@ -1,6 +1,6 @@
 package controllers;
 
-import database.DBManager;
+import database.DBService;
 import entity.Discipline;
 import entity.Term;
 
@@ -19,9 +19,9 @@ public class TermsModifyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("idModify");// GET - запрос выбор семестра, требующего изменения из terms.jsp, id мы не вписываем, а выбираем семестр из списка
-        ArrayList<Discipline> allDisciplines = DBManager.getAllActiveDisciplines();
-        ArrayList<Discipline> disciplinesByTerm = DBManager.getAllActiveDisciplinesByTerm(Integer.parseInt(id));
-        Term term = DBManager.getTermByID(id);
+        ArrayList<Discipline> allDisciplines = DBService.getAllActiveDisciplines();
+        ArrayList<Discipline> disciplinesByTerm = DBService.getAllActiveDisciplinesByTerm(Integer.parseInt(id));
+        Term term = DBService.getTermByID(id);
 
         for (int i = 0; i < allDisciplines.size(); i++) {
             for (Discipline discByTerm : disciplinesByTerm) {
@@ -43,9 +43,9 @@ public class TermsModifyController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("idModify");// GET - запрос выбор семестра, требующего изменения из terms.jsp, id мы не вписываем, а выбираем семестр из списка
-        ArrayList<Discipline> allDisciplines = DBManager.getAllActiveDisciplines();
-        ArrayList<Discipline> disciplinesByTerm = DBManager.getAllActiveDisciplinesByTerm(Integer.parseInt(id));
-        Term term = DBManager.getTermByID(id);
+        ArrayList<Discipline> allDisciplines = DBService.getAllActiveDisciplines();
+        ArrayList<Discipline> disciplinesByTerm = DBService.getAllActiveDisciplinesByTerm(Integer.parseInt(id));
+        Term term = DBService.getTermByID(id);
 
         for (int i = 0; i < allDisciplines.size(); i++) {
             for (Discipline discByTerm : disciplinesByTerm) {

@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 import static constants.Constants.DB;
 
-public class DBManager {
+public class DBService {
 
     //    STUDENTS
     public static ArrayList<Student> getAllActiveStudents() {
@@ -93,8 +93,7 @@ public class DBManager {
 
     public static void modifyStudent(String id, String lastname, String name, String group, String date) {
         try {
-            DB.execute ("UPDATE `students_19`.`student` " +
-                    "SET `lastname` ='" + lastname + "', `name` ='" + name + "', `group` ='" + group + "', `date` ='" + date + "' WHERE(`id` = '" + id + "');");
+            DB.executeQuery ("UPDATE `students_19`.`student` SET `lastname` ='" + lastname + "', `name` ='" + name + "', `group` ='" + group + "', `date` ='" + date + "' WHERE(`id` = '" + id + "');");
         } catch (Exception e) {
             e.printStackTrace();
         }
