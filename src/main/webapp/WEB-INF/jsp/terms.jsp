@@ -47,13 +47,13 @@
         </div>
         <br><br>
         <h4 style="float: left; padding-right: 10px">Длительность семестра: </h4>
-            <c:forEach items="${terms}" var="t">
-                <c:choose>
-                    <c:when test="${t.id == selectedTerm.id}">
-                        <div value="${t.id}">${t.duration}</div>
-                    </c:when>
-                </c:choose>
-            </c:forEach>
+        <c:forEach items="${terms}" var="t">
+            <c:choose>
+                <c:when test="${t.id == selectedTerm.id}">
+                    <div value="${t.id}">${t.duration}</div>
+                </c:when>
+            </c:choose>
+        </c:forEach>
         <br>
         <h4>Список дисциплин семестра </h4>
         <br>
@@ -67,7 +67,7 @@
                 </tr>
             </c:forEach>
         </table>
-                <c:if test="${role == 1}">
+        <c:if test="${role == 1}">
         <div class="block__row__column">
             <div class="block__form3 block__element_2">
                 <form action="/term-create" method="get">
@@ -78,7 +78,7 @@
                 <form action="/term-modify" method="get">
                     <input class="inblock" type="submit" onclick="modifyTerm()"
                            value="Модифицировать выбранный семестр">
-                                        <input type="hidden" id="hiddenModify" name="hiddenModify">
+                    <input type="hidden" id="hiddenModify" name="hiddenModify">
                     <input type="hidden" value="${selectedTerm.id}" name="idModify">
                 </form>
             </div>
@@ -88,7 +88,7 @@
                     <input type="hidden" id="hiddenDelete"
                            name="hiddenDelete">
                 </form>
-                                </c:if>
+                </c:if>
             </div>
         </div>
     </div>

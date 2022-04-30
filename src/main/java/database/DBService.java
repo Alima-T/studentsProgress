@@ -158,18 +158,10 @@ public class DBService {
     public static ArrayList<Discipline> getAllActiveDisciplinesByTerm(int idTerm) {
         ArrayList<Discipline> disciplines = new ArrayList<Discipline>();
         try {
-//            ResultSet rs = Constants.DB.executeQuery("SELECT * FROM students_19.term_discipline \n" +
-//                    "left join discipline on term_discipline.id_discipline = discipline.id\n" +
-//                    "where term_discipline.id_term='1' \n" +
-//                    "and discipline.status = '1' ");
             ResultSet rs = DB.executeQuery("SELECT d.id, d.discipline FROM students_19.term_discipline as td \n" +
                     "left join discipline as d on td.id_discipline = d.id\n" +
                     "where td.id_term='" + idTerm + "'\n" +
                     "and d.status = '1' ");
-//            ResultSet rs = stmt.executeQuery("SELECT d.id, d.discipline FROM term_discipline as td" + //as - маска, для того, чтобы сократить название заменяем с помощью фы
-//                    "left join discipline as d on td.id_discipline = d.id\n" +// join - присоединение таблицы discipline к таблице term_discipline к колонке id_discipline
-//                    "where td.id_term =  '" + idTerm + "'" + // где id_term равно выбранному в браузере семестру
-//                    "and d.status = '1'");// выводит только активные дисциплины в выбранном семестре
             while (rs.next()) {
                 Discipline discipline = new Discipline();
                 discipline.setDiscipline(rs.getString("discipline"));

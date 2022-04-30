@@ -21,19 +21,19 @@ public class TermCreateController extends HttpServlet {
         req.getRequestDispatcher("WEB-INF/jsp/term-create.jsp").forward(req, resp);
     }
 
-// doPost не работает!!! В РАБОТЕ!
+    // doPost не работает!!! В РАБОТЕ!
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String newTerm = req.getParameter("newTerm");
-        String duration = req.getParameter("newDuration");
+        String newDuration = req.getParameter("newDuration");
         ArrayList<Discipline> allDisciplines = DBService.getAllActiveDisciplines();
         ArrayList<Discipline> disciplinesOfNewTerm = DBService.getAllActiveDisciplinesByTerm(Integer.parseInt(newTerm)); //подумать над id
 
-        if (newTerm == null || newTerm.equals("")) {
+        if (newTerm == null || newDuration == null || newTerm.equals("") || newDuration.equals("")) {
             req.setAttribute("message", "error"); //for jsp
-            req.getRequestDispatcher("/terms").forward(req, resp);
+            req.getRequestDispatcher("/term-creat").forward(req, resp);
         }
-        DBService.createNewTerm(duration, disciplinesOfNewTerm);
+        DBService.createNewTerm(newDuration, disciplinesOfNewTerm);
         resp.sendRedirect("/terms");
     }
 }
