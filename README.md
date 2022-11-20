@@ -1,4 +1,4 @@
-CRM system for tracking student progress with authorization and access rights based on roles (student, teacher, administrator).
+CRM system for tracking student's progress with authorization and access rights based on roles (student, teacher, administrator).
 
 For full access, use the admin's username and password.
 
